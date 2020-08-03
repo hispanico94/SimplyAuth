@@ -12,6 +12,7 @@
 		CF02328824D5CCEB00B7D8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */; };
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
 		CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */; };
+		CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9FEE4124D7E50100A3BA0C /* AppState.swift */; };
 		CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */; };
 		CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */; };
 		CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7024D70F6500DDCDDC /* HOTP.swift */; };
@@ -25,6 +26,7 @@
 		CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF9FEE4124D7E50100A3BA0C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */,
 				CF02328C24D5CCEB00B7D8A8 /* Info.plist */,
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
+				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			files = (
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
 				CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */,
+				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,

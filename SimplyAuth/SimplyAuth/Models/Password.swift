@@ -1,10 +1,3 @@
-//
-//  Password.swift
-//  SimplyAuth
-//
-//  Created by Paolo Rocca on 02/08/2020.
-//
-
 import Foundation
 
 struct Password {
