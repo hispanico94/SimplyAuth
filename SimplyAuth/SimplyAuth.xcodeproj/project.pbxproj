@@ -17,6 +17,7 @@
 		CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */; };
 		CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7024D70F6500DDCDDC /* HOTP.swift */; };
 		CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7224D70FC400DDCDDC /* Password.swift */; };
+		CFF0407924DA853700D80F50 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407824DA853700D80F50 /* AppAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		CFA4AD7224D70FC400DDCDDC /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		CFF0407824DA853700D80F50 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				CF02328C24D5CCEB00B7D8A8 /* Info.plist */,
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
 				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
+				CFF0407824DA853700D80F50 /* AppAction.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
+				CFF0407924DA853700D80F50 /* AppAction.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,
 				CF02328424D5CCEA00B7D8A8 /* SimplyAuthApp.swift in Sources */,
 			);
