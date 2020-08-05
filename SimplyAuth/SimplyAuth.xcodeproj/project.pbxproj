@@ -18,6 +18,9 @@
 		CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7024D70F6500DDCDDC /* HOTP.swift */; };
 		CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7224D70FC400DDCDDC /* Password.swift */; };
 		CFF0407924DA853700D80F50 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407824DA853700D80F50 /* AppAction.swift */; };
+		CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */; };
+		CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407C24DA8B2100D80F50 /* IDStore.swift */; };
+		CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		CFA4AD7224D70FC400DDCDDC /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		CFF0407824DA853700D80F50 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
+		CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		CFF0407C24DA8B2100D80F50 /* IDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStore.swift; sourceTree = "<group>"; };
+		CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,9 @@
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
 				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
 				CFF0407824DA853700D80F50 /* AppAction.swift */,
+				CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */,
+				CFF0407C24DA8B2100D80F50 /* IDStore.swift */,
+				CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -178,8 +187,11 @@
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
 				CFF0407924DA853700D80F50 /* AppAction.swift in Sources */,
+				CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */,
+				CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,
 				CF02328424D5CCEA00B7D8A8 /* SimplyAuthApp.swift in Sources */,
+				CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
