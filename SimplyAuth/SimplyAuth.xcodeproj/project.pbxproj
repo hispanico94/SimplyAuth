@@ -11,6 +11,8 @@
 		CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF02328524D5CCEA00B7D8A8 /* ContentView.swift */; };
 		CF02328824D5CCEB00B7D8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */; };
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
+		CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4224DC74CE00D582A1 /* Keychain.swift */; };
+		CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4424DC779300D582A1 /* KeychainError.swift */; };
 		CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */; };
 		CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9FEE4124D7E50100A3BA0C /* AppState.swift */; };
 		CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */; };
@@ -30,6 +32,8 @@
 		CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF70CE4224DC74CE00D582A1 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		CF70CE4424DC779300D582A1 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		CF9FEE4124D7E50100A3BA0C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		CF02328224D5CCEA00B7D8A8 /* SimplyAuth */ = {
 			isa = PBXGroup;
 			children = (
+				CF70CE4624DC8ABD00D582A1 /* Store */,
+				CF70CE4124DC74B300D582A1 /* Keychain */,
 				CFA4AD6924D70E2D00DDCDDC /* Models */,
 				CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */,
 				CF02328524D5CCEA00B7D8A8 /* ContentView.swift */,
@@ -81,8 +87,6 @@
 				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
 				CFF0407824DA853700D80F50 /* AppAction.swift */,
 				CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */,
-				CFF0407C24DA8B2100D80F50 /* IDStore.swift */,
-				CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -93,6 +97,24 @@
 				CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CF70CE4124DC74B300D582A1 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				CF70CE4224DC74CE00D582A1 /* Keychain.swift */,
+				CF70CE4424DC779300D582A1 /* KeychainError.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		CF70CE4624DC8ABD00D582A1 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */,
+				CFF0407C24DA8B2100D80F50 /* IDStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		CFA4AD6924D70E2D00DDCDDC /* Models */ = {
@@ -186,8 +208,10 @@
 				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
+				CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */,
 				CFF0407924DA853700D80F50 /* AppAction.swift in Sources */,
 				CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */,
+				CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */,
 				CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,
 				CF02328424D5CCEA00B7D8A8 /* SimplyAuthApp.swift in Sources */,
