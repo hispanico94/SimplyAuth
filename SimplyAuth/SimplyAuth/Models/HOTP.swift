@@ -1,6 +1,6 @@
 import Foundation
 
-struct HOTP {
+struct HOTP: Codable {
   var secret: String
   var issuer: String
   var label: String

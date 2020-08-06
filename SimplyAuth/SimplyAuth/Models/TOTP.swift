@@ -1,6 +1,6 @@
 import Foundation
 
-struct TOTP {
+struct TOTP: Codable {
   var secret: String
   var issuer: String
   var label: String
