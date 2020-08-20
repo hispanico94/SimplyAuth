@@ -5,6 +5,7 @@
 //  Created by Paolo Rocca on 05/08/2020.
 //
 
+import Combine
 import Foundation
 
 // MARK: - PasswordStore
@@ -12,8 +13,8 @@ import Foundation
 struct PasswordStore {
   var savePassword: (Password) throws -> Void
   var savePassowrds: ([Password]) throws -> Void
-  var getPassword: (UUID) throws -> Password?
-  var getPasswords: ([UUID]) throws -> [Password]
+  var getPassword: (UUID) -> AnyPublisher<Password?, PasswordStore.Error>
+  var getPasswords: ([UUID]) -> AnyPublisher<[Password], PasswordStore.Error>
 }
 
 extension PasswordStore {
@@ -21,6 +22,7 @@ extension PasswordStore {
     case encodingError
     case decodingError
     case storingError(description: String?)
+    case unknownError
   }
 }
 
@@ -33,6 +35,8 @@ extension PasswordStore.Error: LocalizedError {
       return "An error occurred while decoding the data from the store"
     case .storingError(let description):
       return "An error occurred while storing or retrieving the password: \(description ?? "Unknown")"
+    case .unknownError:
+      return "An unknown error occurred"
     }
   }
 }
@@ -70,7 +74,31 @@ private func savePasswords(_ passwords: [Password]) throws {
   try passwords.forEach(savePassword(_:))
 }
 
-private func getPassword(from id: UUID) throws -> Password? {
+private func getPassword(from id: UUID) -> AnyPublisher<Password?, PasswordStore.Error> {
+  do {
+    return Just(try getPasswordSync(from: id))
+      .setFailureType(to: PasswordStore.Error.self)
+      .eraseToAnyPublisher()
+  } catch let error as PasswordStore.Error {
+    return Fail(error: error).eraseToAnyPublisher()
+  } catch {
+    return Fail(error: .unknownError).eraseToAnyPublisher()
+  }
+}
+
+private func getPasswords(from ids: [UUID]) -> AnyPublisher<[Password], PasswordStore.Error> {
+  do {
+    return Just(try ids.compactMap(getPasswordSync(from:)))
+      .setFailureType(to: PasswordStore.Error.self)
+      .eraseToAnyPublisher()
+  } catch let error as PasswordStore.Error {
+    return Fail(error: error).eraseToAnyPublisher()
+  } catch {
+    return Fail(error: .unknownError).eraseToAnyPublisher()
+  }
+}
+
+private func getPasswordSync(from id: UUID) throws -> Password? {
   let data: Data?
   
   do {
@@ -89,8 +117,4 @@ private func getPassword(from id: UUID) throws -> Password? {
   } catch {
     throw PasswordStore.Error.decodingError
   }
-}
-
-private func getPasswords(from ids: [UUID]) throws -> [Password] {
-  try ids.compactMap(getPassword(from:))
 }

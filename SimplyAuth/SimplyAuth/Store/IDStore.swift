@@ -5,13 +5,14 @@
 //  Created by Paolo Rocca on 05/08/2020.
 //
 
+import Combine
 import Foundation
 
 private let idKey = "idKey"
 
 struct IDStore {
   var saveIds: ([UUID]) -> Void
-  var getIds: () -> [UUID]
+  var getIds: () -> AnyPublisher<[UUID], Never>
 }
 
 extension IDStore {
@@ -25,9 +26,9 @@ extension IDStore {
       guard
         let idData = UserDefaults.standard.data(forKey: idKey),
         let ids = try? JSONDecoder().decode([UUID].self, from: idData)
-      else { return [] }
+      else { return Just([]).eraseToAnyPublisher() }
       
-      return ids
+      return Just(ids).eraseToAnyPublisher()
     }
   )
 }
