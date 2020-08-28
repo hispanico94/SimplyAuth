@@ -15,6 +15,7 @@ struct PasswordStore {
   var savePassowrds: ([Password]) throws -> Void
   var getPassword: (UUID) -> AnyPublisher<Password?, PasswordStore.Error>
   var getPasswords: ([UUID]) -> AnyPublisher<[Password], PasswordStore.Error>
+  var removePassword: (Password) throws -> Void
 }
 
 extension PasswordStore {
@@ -48,7 +49,8 @@ extension PasswordStore {
     savePassword: savePassword(_:),
     savePassowrds: savePasswords(_:),
     getPassword: getPassword(from:),
-    getPasswords: getPasswords(from:)
+    getPasswords: getPasswords(from:),
+    removePassword: removePassword(_:)
   )
 }
 
@@ -117,4 +119,8 @@ private func getPasswordSync(from id: UUID) throws -> Password? {
   } catch {
     throw PasswordStore.Error.decodingError
   }
+}
+
+private func removePassword(_ password: Password) throws {
+  try keychain.removeData(forAccount: password.id.uuidString)
 }
