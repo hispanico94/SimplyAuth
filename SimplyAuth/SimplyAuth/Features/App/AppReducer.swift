@@ -53,11 +53,11 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     
   case .updateCounter(var password):
     guard
-      case .counterBased(var hotpPass) = password.typology
+      case .hotp(var counter) = password.typology
     else { return .none }
     
-    hotpPass.counter += 1
-    password.typology = .counterBased(hotpPass)
+    counter += 1
+    password.typology = .hotp(counter)
     
     return .fireAndForget {
       try? environment.passwordStore.savePassword(password)

@@ -2,30 +2,36 @@ import Foundation
 
 struct Password: Codable {
   enum Typology {
-    case counterBased(HOTP)
-    case timeBased(TOTP)
+    case hotp(UInt)
+    case totp(UInt)
   }
   
   var id: UUID = UUID()
   var isFromQRCode: Bool = false
-  var typology: Typology
+  var digits: UInt8 = 6
+  var algorithm: Algorithm = .sha256
+  var typology: Typology = .totp(30)
+  
+  var secret: String
+  var issuer: String
+  var label: String
 }
 
 extension Password.Typology: Codable {
   enum CodingKeys: CodingKey {
-    case counterBased
-    case timeBased
+    case hotp
+    case totp
   }
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     
     do {
-      let hotp = try container.decode(HOTP.self, forKey: .counterBased)
-      self = .counterBased(hotp)
+      let counter = try container.decode(UInt.self, forKey: .hotp)
+      self = .hotp(counter)
     } catch {
-      let totp = try container.decode(TOTP.self, forKey: .timeBased)
-      self = .timeBased(totp)
+      let interval = try container.decode(UInt.self, forKey: .totp)
+      self = .totp(interval)
     }
   }
   
@@ -33,10 +39,10 @@ extension Password.Typology: Codable {
     var container = encoder.container(keyedBy: CodingKeys.self)
     
     switch self {
-    case .counterBased(let hotp):
-      try container.encode(hotp, forKey: .counterBased)
-    case .timeBased(let totp):
-      try container.encode(totp, forKey: .timeBased)
+    case .hotp(let counter):
+      try container.encode(counter, forKey: .hotp)
+    case .totp(let interval):
+      try container.encode(interval, forKey: .totp)
     }
   }
 }
