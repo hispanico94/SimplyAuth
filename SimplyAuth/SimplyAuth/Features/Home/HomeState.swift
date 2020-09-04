@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct HomeState: Equatable {
+  var passwords: [Password] = []
+  var unixEpochSeconds: UInt = 0
+}
