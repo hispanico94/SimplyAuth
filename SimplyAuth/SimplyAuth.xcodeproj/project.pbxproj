@@ -24,6 +24,7 @@
 		CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */; };
 		CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407C24DA8B2100D80F50 /* IDStore.swift */; };
 		CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */; };
+		CFF5434B25029D40004AA37A /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5434A25029D40004AA37A /* HomeState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		CFF0407C24DA8B2100D80F50 /* IDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStore.swift; sourceTree = "<group>"; };
 		CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStore.swift; sourceTree = "<group>"; };
+		CFF5434A25029D40004AA37A /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		CFF5434425029AE6004AA37A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				CFF5434925029D34004AA37A /* Home */,
 				CFF5434525029AF9004AA37A /* App */,
 			);
 			path = Features;
@@ -145,6 +148,14 @@
 				CF63557624EA7A7400FD73A6 /* AppReducer.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		CFF5434925029D34004AA37A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CFF5434A25029D40004AA37A /* HomeState.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
+				CFF5434B25029D40004AA37A /* HomeState.swift in Sources */,
 				CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */,
 				CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */,
 				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
