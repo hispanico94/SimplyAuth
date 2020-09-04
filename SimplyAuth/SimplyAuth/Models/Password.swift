@@ -40,3 +40,6 @@ extension Password.Typology: Codable {
     }
   }
 }
+
+extension Password: Equatable { }
+extension Password.Typology: Equatable { }
