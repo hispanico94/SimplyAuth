@@ -25,6 +25,7 @@
 		CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407C24DA8B2100D80F50 /* IDStore.swift */; };
 		CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */; };
 		CFF5434B25029D40004AA37A /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5434A25029D40004AA37A /* HomeState.swift */; };
+		CFF5434D25029E69004AA37A /* PasswordCellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5434C25029E69004AA37A /* PasswordCellState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		CFF0407C24DA8B2100D80F50 /* IDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStore.swift; sourceTree = "<group>"; };
 		CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStore.swift; sourceTree = "<group>"; };
 		CFF5434A25029D40004AA37A /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
+		CFF5434C25029E69004AA37A /* PasswordCellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCellState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				CFF5434A25029D40004AA37A /* HomeState.swift */,
+				CFF5434C25029E69004AA37A /* PasswordCellState.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */,
 				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
+				CFF5434D25029E69004AA37A /* PasswordCellState.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
 				CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */,
 				CFF0407924DA853700D80F50 /* AppAction.swift in Sources */,
