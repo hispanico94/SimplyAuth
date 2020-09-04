@@ -78,18 +78,14 @@
 		CF02328224D5CCEA00B7D8A8 /* SimplyAuth */ = {
 			isa = PBXGroup;
 			children = (
+				CFF5434425029AE6004AA37A /* Features */,
 				CF70CE4624DC8ABD00D582A1 /* Store */,
 				CF70CE4124DC74B300D582A1 /* Keychain */,
 				CFA4AD6924D70E2D00DDCDDC /* Models */,
-				CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */,
 				CF02328524D5CCEA00B7D8A8 /* ContentView.swift */,
 				CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */,
 				CF02328C24D5CCEB00B7D8A8 /* Info.plist */,
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
-				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
-				CFF0407824DA853700D80F50 /* AppAction.swift */,
-				CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */,
-				CF63557624EA7A7400FD73A6 /* AppReducer.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -129,6 +125,26 @@
 				CFA4AD7224D70FC400DDCDDC /* Password.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CFF5434425029AE6004AA37A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				CFF5434525029AF9004AA37A /* App */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		CFF5434525029AF9004AA37A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */,
+				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
+				CFF0407824DA853700D80F50 /* AppAction.swift */,
+				CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */,
+				CF63557624EA7A7400FD73A6 /* AppReducer.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
