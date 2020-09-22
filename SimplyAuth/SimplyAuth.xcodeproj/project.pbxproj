@@ -111,6 +111,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CF2850F42519CE5300C50DD0 /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				CFF5434A25029D40004AA37A /* HomeState.swift */,
+				CF7DB16F250A0137001999E4 /* HomeAction.swift */,
+				CFBE2521250B4D95008EE40C /* HomeReducer.swift */,
+				CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
 		CF5BEE04250CCB92006C269C /* OTPCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,11 +191,8 @@
 		CFF5434925029D34004AA37A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CF2850F42519CE5300C50DD0 /* Business Logic */,
 				CF5BEE04250CCB92006C269C /* OTPCell */,
-				CFF5434A25029D40004AA37A /* HomeState.swift */,
-				CF7DB16F250A0137001999E4 /* HomeAction.swift */,
-				CFBE2521250B4D95008EE40C /* HomeReducer.swift */,
-				CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
