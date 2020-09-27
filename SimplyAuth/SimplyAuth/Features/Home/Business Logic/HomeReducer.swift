@@ -55,8 +55,9 @@ let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, actio
   case .onDisappear:
     return .cancel(id: ClockTimerID())
     
-  case .password(var password, .updateCounter):
+  case .password(let id, .updateCounter):
     guard
+      var password = state.passwords.first(where: { $0.id == id }),
       case .hotp(var counter) = password.typology
     else { return .none }
     

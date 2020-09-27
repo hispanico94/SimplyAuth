@@ -69,7 +69,7 @@ extension PasswordStore {
     getPasswords: { ids in
       print("Rquested passwords with UUIDs: \(ids)")
       let passwords = ids
-        .map { Password(id: $0, secret: "dsadasdhkakgkfskòfk\(Int.random(in: 1...100))", issuer: "MockPasswordStore\(Int.random(in: 1...100))", label: "mocked OTP \(Int.random(in: 1...100))") }
+        .map { Password(id: $0, secret: "dsadasdhkakgkfskofk\(Int.random(in: 1...100))", issuer: "MockPasswordStore\(Int.random(in: 1...100))", label: "mocked OTP \(Int.random(in: 1...100))") }
       return Just(passwords)
         .setFailureType(to: PasswordStore.Error.self)
         .eraseToAnyPublisher()

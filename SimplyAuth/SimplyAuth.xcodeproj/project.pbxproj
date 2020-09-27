@@ -24,6 +24,7 @@
 		CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */; };
 		CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7024D70F6500DDCDDC /* HOTP.swift */; };
 		CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7224D70FC400DDCDDC /* Password.swift */; };
+		CFBBF53B25208DD20048E689 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBBF53A25208DD20048E689 /* HomeView.swift */; };
 		CFBC0358251DC79F00BDDA0A /* HOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC0357251DC79F00BDDA0A /* HOTPView.swift */; };
 		CFBE2522250B4D95008EE40C /* HomeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2521250B4D95008EE40C /* HomeReducer.swift */; };
 		CFBE2524250B4DAB008EE40C /* HomeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */; };
@@ -55,6 +56,7 @@
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		CFA4AD7224D70FC400DDCDDC /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		CFBBF53A25208DD20048E689 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFBC0357251DC79F00BDDA0A /* HOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPView.swift; sourceTree = "<group>"; };
 		CFBE2521250B4D95008EE40C /* HomeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReducer.swift; sourceTree = "<group>"; };
 		CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEnvironment.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				CF2850F62519CECD00C50DD0 /* TOTPView.swift */,
 				CFBC0357251DC79F00BDDA0A /* HOTPView.swift */,
+				CFBBF53A25208DD20048E689 /* HomeView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				CFE90BA1251B259900E2A49A /* Extensions.swift in Sources */,
 				CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */,
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
+				CFBBF53B25208DD20048E689 /* HomeView.swift in Sources */,
 				CFF5434B25029D40004AA37A /* HomeState.swift in Sources */,
 				CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */,
 				CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */,
