@@ -28,7 +28,8 @@ struct HomeState: Equatable {
             issuer: password.issuer,
             label: password.label,
             currentPassword: OTPExtractor.totpCode(from: password, unixEpochSeconds: unixEpochSeconds) ?? "ERROR",
-            timeLeft: "\(unixEpochSeconds % interval)"
+            timeLeft: "\(unixEpochSeconds % interval)",
+            percentTimeLeft: 100 * Double(unixEpochSeconds % interval) / Double(interval)
           ))
         }
       })

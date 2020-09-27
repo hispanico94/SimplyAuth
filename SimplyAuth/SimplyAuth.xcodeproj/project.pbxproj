@@ -11,6 +11,7 @@
 		CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF02328524D5CCEA00B7D8A8 /* ContentView.swift */; };
 		CF02328824D5CCEB00B7D8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */; };
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
+		CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2850F62519CECD00C50DD0 /* TOTPView.swift */; };
 		CF5BEE06250CCBBC006C269C /* OTPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BEE05250CCBBC006C269C /* OTPCell.swift */; };
 		CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF63557624EA7A7400FD73A6 /* AppReducer.swift */; };
 		CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4224DC74CE00D582A1 /* Keychain.swift */; };
@@ -23,8 +24,11 @@
 		CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */; };
 		CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7024D70F6500DDCDDC /* HOTP.swift */; };
 		CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7224D70FC400DDCDDC /* Password.swift */; };
+		CFBC0358251DC79F00BDDA0A /* HOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC0357251DC79F00BDDA0A /* HOTPView.swift */; };
 		CFBE2522250B4D95008EE40C /* HomeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2521250B4D95008EE40C /* HomeReducer.swift */; };
 		CFBE2524250B4DAB008EE40C /* HomeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */; };
+		CFE90B9D251B1F9D00E2A49A /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE90B9C251B1F9D00E2A49A /* Gauge.swift */; };
+		CFE90BA1251B259900E2A49A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE90BA0251B259900E2A49A /* Extensions.swift */; };
 		CFF0407924DA853700D80F50 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407824DA853700D80F50 /* AppAction.swift */; };
 		CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */; };
 		CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407C24DA8B2100D80F50 /* IDStore.swift */; };
@@ -39,6 +43,7 @@
 		CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF2850F62519CECD00C50DD0 /* TOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTPView.swift; sourceTree = "<group>"; };
 		CF5BEE05250CCBBC006C269C /* OTPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCell.swift; sourceTree = "<group>"; };
 		CF63557624EA7A7400FD73A6 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		CF70CE4224DC74CE00D582A1 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -50,8 +55,11 @@
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		CFA4AD7224D70FC400DDCDDC /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		CFBC0357251DC79F00BDDA0A /* HOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPView.swift; sourceTree = "<group>"; };
 		CFBE2521250B4D95008EE40C /* HomeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReducer.swift; sourceTree = "<group>"; };
 		CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEnvironment.swift; sourceTree = "<group>"; };
+		CFE90B9C251B1F9D00E2A49A /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
+		CFE90BA0251B259900E2A49A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CFF0407824DA853700D80F50 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		CFF0407C24DA8B2100D80F50 /* IDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStore.swift; sourceTree = "<group>"; };
@@ -90,6 +98,7 @@
 		CF02328224D5CCEA00B7D8A8 /* SimplyAuth */ = {
 			isa = PBXGroup;
 			children = (
+				CFE90B9B251B1F7F00E2A49A /* Widgets */,
 				CF9A7DE725164B2A00858F8C /* OTP */,
 				CF70CE4624DC8ABD00D582A1 /* Store */,
 				CF70CE4124DC74B300D582A1 /* Keychain */,
@@ -99,6 +108,7 @@
 				CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */,
 				CF02328C24D5CCEB00B7D8A8 /* Info.plist */,
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
+				CFE90BA0251B259900E2A49A /* Extensions.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -120,6 +130,15 @@
 				CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */,
 			);
 			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		CF2850F52519CEB000C50DD0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CF2850F62519CECD00C50DD0 /* TOTPView.swift */,
+				CFBC0357251DC79F00BDDA0A /* HOTPView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		CF5BEE04250CCB92006C269C /* OTPCell */ = {
@@ -167,6 +186,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CFE90B9B251B1F7F00E2A49A /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				CFE90B9C251B1F9D00E2A49A /* Gauge.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		CFF5434425029AE6004AA37A /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +218,7 @@
 		CFF5434925029D34004AA37A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CF2850F52519CEB000C50DD0 /* UI */,
 				CF2850F42519CE5300C50DD0 /* Business Logic */,
 				CF5BEE04250CCB92006C269C /* OTPCell */,
 			);
@@ -272,11 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE90BA1251B259900E2A49A /* Extensions.swift in Sources */,
 				CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */,
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
 				CFF5434B25029D40004AA37A /* HomeState.swift in Sources */,
+				CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */,
 				CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */,
 				CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */,
+				CFBC0358251DC79F00BDDA0A /* HOTPView.swift in Sources */,
 				CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */,
 				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
@@ -288,6 +319,7 @@
 				CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,
 				CFBE2524250B4DAB008EE40C /* HomeEnvironment.swift in Sources */,
+				CFE90B9D251B1F9D00E2A49A /* Gauge.swift in Sources */,
 				CFBE2522250B4D95008EE40C /* HomeReducer.swift in Sources */,
 				CF02328424D5CCEA00B7D8A8 /* SimplyAuthApp.swift in Sources */,
 				CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */,
