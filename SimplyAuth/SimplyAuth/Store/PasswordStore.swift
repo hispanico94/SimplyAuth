@@ -54,6 +54,30 @@ extension PasswordStore {
   )
 }
 
+// MARK: Mock implementation
+
+extension PasswordStore {
+  static let mock = PasswordStore(
+    savePassword: { print("Password saved: \($0)") },
+    savePassowrds: { print("Passwords saved: \($0)") },
+    getPassword: {
+      print("Requested password with UUID: \($0)")
+      return Just(Password(id: $0, secret: "sfdlskje9023fjsk", issuer: "MockPasswordStore", label: "mocked OTP"))
+        .setFailureType(to: PasswordStore.Error.self)
+        .eraseToAnyPublisher()
+    },
+    getPasswords: { ids in
+      print("Rquested passwords with UUIDs: \(ids)")
+      let passwords = ids
+        .map { Password(id: $0, secret: "dsadasdhkakgkfskòfk\(Int.random(in: 1...100))", issuer: "MockPasswordStore\(Int.random(in: 1...100))", label: "mocked OTP \(Int.random(in: 1...100))") }
+      return Just(passwords)
+        .setFailureType(to: PasswordStore.Error.self)
+        .eraseToAnyPublisher()
+    },
+    removePassword: { print("Removed password: \($0)") }
+  )
+}
+
 // MARK: - Private implementation
 
 private let keychain = Keychain(accessGroup: nil, service: "com.PaoloRocca.SimplyAuth")

@@ -15,6 +15,8 @@ struct IDStore {
   var getIds: () -> AnyPublisher<[UUID], Never>
 }
 
+// MARK: Live implementation
+
 extension IDStore {
   static let live = IDStore(
     saveIds: { ids in
@@ -29,6 +31,24 @@ extension IDStore {
       else { return Just([]).eraseToAnyPublisher() }
       
       return Just(ids).eraseToAnyPublisher()
+    }
+  )
+}
+
+// MARK: Mock implementation
+
+extension IDStore {
+  static let mock = IDStore(
+    saveIds: { print("IDs saved: \($0)") },
+    getIds: {
+      Just([
+        UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+        UUID(uuidString: "00000000-0000-0000-0000-000000000002")!,
+        UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
+        UUID(uuidString: "00000000-0000-0000-0000-000000000004")!,
+        UUID(uuidString: "00000000-0000-0000-0000-000000000005")!,
+      ])
+      .eraseToAnyPublisher()
     }
   )
 }
