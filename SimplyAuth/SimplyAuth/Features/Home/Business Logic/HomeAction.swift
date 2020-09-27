@@ -15,12 +15,14 @@ enum HomeAction {
   case onDisappear
   case password(id: UUID, action: PasswordAction)
   case passwords(Result<[Password], PasswordStore.Error>)
-  case removePassword(Password)
   case reorder(source: IndexSet, destination: Int)
   case updatePassword(Password)
 }
 
 enum PasswordAction {
+  case copyToClipboard
+  case delete
+  case edit
   case updateCounter
 }
 

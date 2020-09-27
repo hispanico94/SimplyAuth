@@ -13,18 +13,35 @@ struct HomeView: View {
   
   var body: some View {
     WithViewStore(store) { viewStore in
-      VStack {
-        ForEach(viewStore.cells) { cell in
-          getCellView(
-            from: cell,
-            onRefresh: { viewStore.send(.password(id: cell.id, action: .updateCounter)) }
-          )
-          .padding(.horizontal)
-          .padding(.vertical, 8)
+      NavigationView {
+        ScrollView {
+          VStack {
+            ForEach(viewStore.cells) { cell in
+              getCellView(
+                from: cell,
+                onRefresh: { viewStore.send(.password(id: cell.id, action: .updateCounter)) }
+              )
+              .padding(.horizontal)
+              .padding(.vertical, 8)
+              .contextMenu {
+                Button(
+                  action: { viewStore.send(.password(id: cell.id, action: .copyToClipboard)) },
+                  label: { Label("Copy", systemImage: "doc.on.doc") })
+                Button(
+                  action: { viewStore.send(.password(id: cell.id, action: .edit)) },
+                  label: { Label("Edit", systemImage: "square.and.pencil") })
+                Button(
+                  action: { viewStore.send(.password(id: cell.id, action: .delete)) },
+                  label: { Label("Delete", systemImage: "trash").foregroundColor(.red) })
+              }
+            }
+            .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
+          }
+          .navigationBarItems(trailing: EditButton())
+          .onAppear { viewStore.send(.onAppear) }
+          .onDisappear { viewStore.send(.onDisappear) }
         }
       }
-      .onAppear { viewStore.send(.onAppear) }
-      .onDisappear { viewStore.send(.onDisappear) }
     }
   }
   
@@ -47,13 +64,7 @@ struct HomeView_Previews: PreviewProvider {
           unixEpochSeconds: 1601200819
         ),
         reducer: homeReducer,
-        environment: HomeEnvironment(
-          date: { Date(timeIntervalSince1970: 1601200819) },
-          uuid: UUID.init,
-          mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-          idStore: .mock,
-          passwordStore: .mock
-        )
+        environment: .mock
       )
     )
   }

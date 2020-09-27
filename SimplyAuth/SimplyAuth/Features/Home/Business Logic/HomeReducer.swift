@@ -55,6 +55,45 @@ let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, actio
   case .onDisappear:
     return .cancel(id: ClockTimerID())
     
+  case .password(let id, action: .copyToClipboard):
+    guard
+      let cell = state.cells.first(where: { $0.id == id })
+    else { return .none }
+    
+    let otp: String
+    
+    switch cell {
+    case .hotp(let hotpCell):
+      otp = hotpCell.currentPassword.replacingOccurrences(of: " ", with: "")
+    case .totp(let totpCell):
+      otp = totpCell.currentPassword.replacingOccurrences(of: " ", with: "")
+    }
+    
+    guard
+      otp.allSatisfy(\.isNumber)
+    else { return .none }
+    
+    return .fireAndForget {
+      environment.clipboard(otp)
+    }
+    
+  case .password(let id, action: .delete):
+    guard
+      let index = state.passwords.firstIndex(where: { $0.id == id })
+    else { return .none }
+    
+    let passwordToRemove = state.passwords.remove(at: index)
+    
+    return .fireAndForget {
+      try? environment.passwordStore.removePassword(passwordToRemove)
+    }
+    
+    
+  case .password(let id, action: .edit):
+    print("EDITED PASSWORD WITH ID: \(id)")
+    
+    return .none
+    
   case .password(let id, .updateCounter):
     guard
       var password = state.passwords.first(where: { $0.id == id }),
@@ -71,12 +110,6 @@ let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, actio
   case .passwords(.success(let passwords)):
     state.passwords = passwords
     return .none
-    
-  case .removePassword(let password):
-    state.passwords.removeAll { $0.id == password.id }
-    return .fireAndForget {
-      try? environment.passwordStore.removePassword(password)
-    }
     
   case .reorder(let source, let destination):
     state.passwords.move(fromOffsets: source, toOffset: destination)
