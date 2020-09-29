@@ -28,6 +28,8 @@
 		CFBC0358251DC79F00BDDA0A /* HOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC0357251DC79F00BDDA0A /* HOTPView.swift */; };
 		CFBE2522250B4D95008EE40C /* HomeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2521250B4D95008EE40C /* HomeReducer.swift */; };
 		CFBE2524250B4DAB008EE40C /* HomeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */; };
+		CFCC276525230E4500D79AF6 /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC276425230E4500D79AF6 /* QRCodeScannerViewController.swift */; };
+		CFCC276925230E9000D79AF6 /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC276825230E9000D79AF6 /* QRCodeScannerView.swift */; };
 		CFE90B9D251B1F9D00E2A49A /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE90B9C251B1F9D00E2A49A /* Gauge.swift */; };
 		CFE90BA1251B259900E2A49A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE90BA0251B259900E2A49A /* Extensions.swift */; };
 		CFF0407924DA853700D80F50 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407824DA853700D80F50 /* AppAction.swift */; };
@@ -60,6 +62,8 @@
 		CFBC0357251DC79F00BDDA0A /* HOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPView.swift; sourceTree = "<group>"; };
 		CFBE2521250B4D95008EE40C /* HomeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReducer.swift; sourceTree = "<group>"; };
 		CFBE2523250B4DAB008EE40C /* HomeEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEnvironment.swift; sourceTree = "<group>"; };
+		CFCC276425230E4500D79AF6 /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; };
+		CFCC276825230E9000D79AF6 /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		CFE90B9C251B1F9D00E2A49A /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
 		CFE90BA0251B259900E2A49A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CFF0407824DA853700D80F50 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
@@ -189,6 +193,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CFCC276025230C8A00D79AF6 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				CFCC276325230E2500D79AF6 /* Supporting Views */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		CFCC276325230E2500D79AF6 /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				CFCC276425230E4500D79AF6 /* QRCodeScannerViewController.swift */,
+				CFCC276825230E9000D79AF6 /* QRCodeScannerView.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
 		CFE90B9B251B1F7F00E2A49A /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +221,7 @@
 		CFF5434425029AE6004AA37A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				CFCC276025230C8A00D79AF6 /* Scanner */,
 				CFF5434925029D34004AA37A /* Home */,
 				CFF5434525029AF9004AA37A /* App */,
 			);
@@ -308,6 +330,7 @@
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
 				CFBBF53B25208DD20048E689 /* HomeView.swift in Sources */,
 				CFF5434B25029D40004AA37A /* HomeState.swift in Sources */,
+				CFCC276925230E9000D79AF6 /* QRCodeScannerView.swift in Sources */,
 				CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */,
 				CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */,
 				CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */,
@@ -318,6 +341,7 @@
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
 				CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */,
 				CFF0407924DA853700D80F50 /* AppAction.swift in Sources */,
+				CFCC276525230E4500D79AF6 /* QRCodeScannerViewController.swift in Sources */,
 				CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */,
 				CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */,
 				CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */,
