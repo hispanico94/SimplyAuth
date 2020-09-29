@@ -16,6 +16,7 @@ enum HomeAction {
   case password(id: UUID, action: PasswordAction)
   case passwords(Result<[Password], PasswordStore.Error>)
   case reorder(source: IndexSet, destination: Int)
+  case setAddPasswordSheet(isPresented: Bool)
   case updatePassword(Password)
 }
 

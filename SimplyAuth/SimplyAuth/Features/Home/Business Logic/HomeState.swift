@@ -10,6 +10,7 @@ import Foundation
 struct HomeState: Equatable {
   var passwords: [Password] = []
   var unixEpochSeconds: UInt = 0
+  var isAddPasswordSheetPresented: Bool = false
   
   var cells: [OTPCell] {
     passwords

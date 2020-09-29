@@ -119,6 +119,10 @@ let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, actio
       environment.idStore.saveIds(newIds)
     }
     
+  case .setAddPasswordSheet(let isPresented):
+    state.isAddPasswordSheetPresented = isPresented
+    return .none
+    
   case .updatePassword(let password):
     return .fireAndForget {
       try? environment.passwordStore.savePassword(password)

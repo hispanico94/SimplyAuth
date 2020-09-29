@@ -32,12 +32,33 @@ struct HomeView: View {
                   label: { Label("Edit", systemImage: "square.and.pencil") })
                 Button(
                   action: { viewStore.send(.password(id: cell.id, action: .delete)) },
-                  label: { Label("Delete", systemImage: "trash").foregroundColor(.red) })
+                  label: { Label("Delete", systemImage: "trash") })
+                  .foregroundColor(.red)
               }
             }
             .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
           }
-          .navigationBarItems(trailing: EditButton())
+          .navigationBarItems(
+            leading: Button(
+              action: { viewStore.send(.setAddPasswordSheet(isPresented: true)) },
+              label: {
+                Image(systemName: "plus.circle")
+                  .imageScale(.large)
+              }
+            ),
+//            .sheet(
+//              isPresented: viewStore.binding(
+//                get: \.isAddPasswordSheetPresented,
+//                send: HomeAction.setAddPasswordSheet(isPresented:)
+//              ),
+//              content: {
+//                IfLetStore(
+//                  store.scope(state:  action:)
+//                )
+//              }
+//            ),
+            trailing: EditButton()
+          )
           .onAppear { viewStore.send(.onAppear) }
           .onDisappear { viewStore.send(.onDisappear) }
         }
