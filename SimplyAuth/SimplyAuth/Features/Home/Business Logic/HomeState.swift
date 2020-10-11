@@ -8,9 +8,15 @@
 import Foundation
 
 struct HomeState: Equatable {
+  var qrCode: String?
   var passwords: [Password] = []
   var unixEpochSeconds: UInt = 0
-  var isAddPasswordSheetPresented: Bool = false
+  var isScannerSheetPresented: Bool = false
+  
+  var scanner: ScannerState {
+    get { ScannerState(qrCode: qrCode) }
+    set { qrCode = newValue.qrCode }
+  }
   
   var cells: [OTPCell] {
     passwords

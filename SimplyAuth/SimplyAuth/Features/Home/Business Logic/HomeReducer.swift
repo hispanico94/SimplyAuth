@@ -8,7 +8,18 @@
 import ComposableArchitecture
 import Foundation
 
-let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, action, environment in
+let homeReducer = Reducer.combine(
+  scannerReducer
+    .pullback(
+      state: \HomeState.scanner,
+      action: /HomeAction.scanner,
+      environment: { _ in }
+    ),
+  _homeReducer
+)
+
+
+private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, action, environment in
   struct ClockTimerID: Hashable { }
   
   switch action {
@@ -119,8 +130,22 @@ let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, actio
       environment.idStore.saveIds(newIds)
     }
     
-  case .setAddPasswordSheet(let isPresented):
-    state.isAddPasswordSheetPresented = isPresented
+  case .scanner(.dismissButtonTapped):
+    state.isScannerSheetPresented = false
+    return .none
+    
+  case .scanner(.manualEntryButtonTapped):
+    state.isScannerSheetPresented = false
+    // TODO: present add password sheet
+    return .none
+    
+  case .scanner(.qrCodeFound):
+    state.isScannerSheetPresented = false
+    // TODO: present add password sheet
+    return .none
+    
+  case .setScannerSheet(let isPresented):
+    state.isScannerSheetPresented = isPresented
     return .none
     
   case .updatePassword(let password):

@@ -16,6 +16,7 @@ protocol QRCodeScannerViewControllerDelegate: AnyObject {
 final class QRCodeScannerViewController: UIViewController {
   private var captureSession: AVCaptureSession!
   private var previewLayer: AVCaptureVideoPreviewLayer!
+  private var sessionCreationFailed = false
   
   weak var delegate: QRCodeScannerViewControllerDelegate?
   
@@ -41,19 +42,25 @@ final class QRCodeScannerViewController: UIViewController {
     view.backgroundColor = UIColor.black
     captureSession = AVCaptureSession()
     
-    guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+    guard
+      let videoCaptureDevice = AVCaptureDevice.default(for: .video)
+    else {
+      sessionCreationFailed = true
+      return
+    }
     let videoInput: AVCaptureDeviceInput
     
     do {
       videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
     } catch {
+      sessionCreationFailed = true
       return
     }
     
     if (captureSession.canAddInput(videoInput)) {
       captureSession.addInput(videoInput)
     } else {
-      failed()
+      sessionCreationFailed = true
       return
     }
     
@@ -65,7 +72,7 @@ final class QRCodeScannerViewController: UIViewController {
       metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
       metadataOutput.metadataObjectTypes = [.qr]
     } else {
-      failed()
+      sessionCreationFailed = true
       return
     }
     
@@ -85,12 +92,21 @@ final class QRCodeScannerViewController: UIViewController {
     }
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    if sessionCreationFailed {
+      sessionCreationFailed = false
+      failed()
+    }
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
     if (captureSession?.isRunning == true) {
       captureSession.stopRunning()
     }
+    captureSession = nil
   }
   
   private func failed() {

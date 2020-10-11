@@ -40,24 +40,26 @@ struct HomeView: View {
           }
           .navigationBarItems(
             leading: Button(
-              action: { viewStore.send(.setAddPasswordSheet(isPresented: true)) },
+              action: { viewStore.send(.setScannerSheet(isPresented: true)) },
               label: {
                 Image(systemName: "plus.circle")
                   .imageScale(.large)
               }
             ),
-//            .sheet(
-//              isPresented: viewStore.binding(
-//                get: \.isAddPasswordSheetPresented,
-//                send: HomeAction.setAddPasswordSheet(isPresented:)
-//              ),
-//              content: {
-//                IfLetStore(
-//                  store.scope(state:  action:)
-//                )
-//              }
-//            ),
             trailing: EditButton()
+          )
+          .sheet(
+            isPresented: viewStore.binding(
+              get: \.isScannerSheetPresented,
+              send: HomeAction.setScannerSheet(isPresented:)
+            ),
+            content: {
+              ScannerView(
+                store: self.store.scope(
+                  state: \.scanner,
+                  action: HomeAction.scanner
+                ))
+            }
           )
           .onAppear { viewStore.send(.onAppear) }
           .onDisappear { viewStore.send(.onDisappear) }
