@@ -13,6 +13,8 @@
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
 		CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2850F62519CECD00C50DD0 /* TOTPView.swift */; };
 		CF28FD65253355F1004D7B5F /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28FD64253355F1004D7B5F /* BlurView.swift */; };
+		CF5304CA25400B2D0093A046 /* EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5304C925400B2D0093A046 /* EditState.swift */; };
+		CF5304CD25400E680093A046 /* EditAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5304CC25400E680093A046 /* EditAction.swift */; };
 		CF5BEE06250CCBBC006C269C /* OTPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BEE05250CCBBC006C269C /* OTPCell.swift */; };
 		CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF63557624EA7A7400FD73A6 /* AppReducer.swift */; };
 		CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4224DC74CE00D582A1 /* Keychain.swift */; };
@@ -53,6 +55,8 @@
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF2850F62519CECD00C50DD0 /* TOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTPView.swift; sourceTree = "<group>"; };
 		CF28FD64253355F1004D7B5F /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		CF5304C925400B2D0093A046 /* EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditState.swift; sourceTree = "<group>"; };
+		CF5304CC25400E680093A046 /* EditAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAction.swift; sourceTree = "<group>"; };
 		CF5BEE05250CCBBC006C269C /* OTPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCell.swift; sourceTree = "<group>"; };
 		CF63557624EA7A7400FD73A6 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		CF70CE4224DC74CE00D582A1 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -158,6 +162,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		CF5304C825400AF40093A046 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				CF5304C925400B2D0093A046 /* EditState.swift */,
+				CF5304CC25400E680093A046 /* EditAction.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		CF5BEE04250CCB92006C269C /* OTPCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +265,7 @@
 		CFF5434425029AE6004AA37A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				CF5304C825400AF40093A046 /* Edit */,
 				CFCC276025230C8A00D79AF6 /* Scanner */,
 				CFF5434925029D34004AA37A /* Home */,
 				CFF5434525029AF9004AA37A /* App */,
@@ -361,6 +375,7 @@
 				CFBA04DA2525A83600AD559B /* ScannerAction.swift in Sources */,
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
 				CFBBF53B25208DD20048E689 /* HomeView.swift in Sources */,
+				CF5304CD25400E680093A046 /* EditAction.swift in Sources */,
 				CFF5434B25029D40004AA37A /* HomeState.swift in Sources */,
 				CFBA04DD2525A9E000AD559B /* ScannerState.swift in Sources */,
 				CFCC276925230E9000D79AF6 /* QRCodeScannerView.swift in Sources */,
@@ -382,6 +397,7 @@
 				CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,
 				CF28FD65253355F1004D7B5F /* BlurView.swift in Sources */,
+				CF5304CA25400B2D0093A046 /* EditState.swift in Sources */,
 				CFBE2524250B4DAB008EE40C /* HomeEnvironment.swift in Sources */,
 				CFE90B9D251B1F9D00E2A49A /* Gauge.swift in Sources */,
 				CFBE2522250B4D95008EE40C /* HomeReducer.swift in Sources */,
