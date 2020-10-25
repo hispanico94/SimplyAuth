@@ -33,3 +33,9 @@ extension NumberFormatter {
 extension UUID {
   static let allZeros = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 }
+
+// MARK: - UInt8
+
+extension UInt8: Identifiable {
+  public var id: UInt8 { self }
+}

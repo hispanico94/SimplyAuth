@@ -9,8 +9,9 @@ import Foundation
 
 struct EditState: Equatable {
   let algorithms: [Algorithm] = [.sha1, .sha256, .sha512]
-  let digits = [6, 7, 8]
+  let digits: [UInt8] = [6, 7, 8]
   let passwordTypologies: [Password.Typology] = [.hotp(0), .totp(30)]
   
-  var password: Password?
+  var isNewPassword: Bool = true
+  var password: Password = Password(secret: "", issuer: "", label: "")
 }

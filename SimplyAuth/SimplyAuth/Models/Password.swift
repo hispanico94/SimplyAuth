@@ -9,7 +9,7 @@ struct Password: Codable {
   var id: UUID = UUID()
   var isFromQRCode: Bool = false
   var digits: UInt8 = 6
-  var algorithm: Algorithm = .sha256
+  var algorithm: Algorithm = .sha1
   var typology: Typology = .totp(30)
   
   var secret: String
@@ -49,3 +49,18 @@ extension Password.Typology: Codable {
 
 extension Password: Equatable { }
 extension Password.Typology: Equatable { }
+
+extension Password.Typology: Hashable { }
+extension Password.Typology: CustomStringConvertible {
+  var description: String {
+    switch self {
+    case .hotp:
+      return "HOTP"
+    case .totp:
+      return "TOTP"
+    }
+  }
+}
+extension Password.Typology: Identifiable {
+  public var id: String { description }
+}

@@ -13,9 +13,9 @@ enum EditAction {
   case secretChanged(String)
   case passwordTypologyChanged(Password.Typology)
   case algorithmChanged(Algorithm)
-  case digitsChanged(UInt)
-  case periodChanged(UInt)
-  case counterChanged
+  case digitsChanged(UInt8)
+  case periodChanged(String)
+  case counterChanged(String)
   
   case cancel
   case save
