@@ -26,10 +26,9 @@ struct ScannerView: View {
             Spacer()
             
             Text("Inquadra il codice QR")
-              .foregroundColor(.white)
               .padding(.horizontal, 24)
               .padding(.vertical, 16)
-              .background(BlurView(style: .systemMaterialDark))
+              .background(BlurView(style: .systemThinMaterial))
               .clipShape(Capsule())
               .padding(.bottom, 16)
           }
