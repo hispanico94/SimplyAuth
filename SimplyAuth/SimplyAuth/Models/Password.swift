@@ -8,9 +8,9 @@ struct Password: Codable {
   
   var id: UUID = UUID()
   var isFromQRCode: Bool = false
-  var digits: UInt8 = 6
-  var algorithm: Algorithm = .sha1
-  var typology: Typology = .totp(30)
+  var digits: UInt8 = defaultDigits
+  var algorithm: Algorithm = .defaultAlgorithm
+  var typology: Typology = .defaultTotp
   
   var secret: String
   var issuer: String
@@ -48,6 +48,83 @@ extension Password.Typology: Codable {
 }
 
 extension Password: Equatable { }
+
+extension Password {
+  
+  
+  /// Initializes the Password from the standard OTP URI format
+  /// - Parameter string: a string containing a standard OTP URI format
+  ///
+  /// The details about the format can be found on the [Google Authenticator repository](https://github.com/google/google-authenticator/wiki/Key-Uri-Format)
+  init?(string: String) {
+    guard
+      let components = URLComponents(string: string),
+      components.scheme == "otpauth",
+      let typologyString = components.host,
+      let queryItems = components.queryItems,
+      let secret = queryItems.first(where: { $0.name == "secret" })?.value,
+      let issuer = queryItems.first(where: { $0.name == "issuer" })?.value
+    else { return nil }
+    
+    let issuerAndLabel = components.path.dropFirst().split(separator: ":")
+    
+    guard
+      issuerAndLabel.isEmpty == false
+    else { return nil }
+    
+    // if issuer is also present in the path it must match the issuer parameter
+    if issuerAndLabel.count == 2,
+       let issuerFromPath = issuerAndLabel.first,
+       issuerFromPath != issuer {
+      return nil
+    }
+    
+    let digits = queryItems
+      .first(where: { $0.name == "digits" })
+      .flatMap(\.value)
+      .flatMap(UInt8.init)
+      ?? Password.defaultDigits
+    
+    let algorithm = queryItems
+      .first(where: { $0.name == "algorithm" })
+      .flatMap(\.value)
+      .map { $0.lowercased() }
+      .flatMap(Algorithm.init(rawValue:))
+      ?? .defaultAlgorithm
+    
+    let typology: Typology
+    
+    if typologyString == "hotp" {
+      typology = queryItems
+        .first(where: { $0.name == "counter" })
+        .flatMap(\.value)
+        .flatMap(UInt.init)
+        .map(Typology.hotp)
+        ?? .defaultHotp
+    } else if typologyString == "totp" {
+      typology = queryItems
+        .first(where: { $0.name == "period" })
+        .flatMap(\.value)
+        .flatMap(UInt.init)
+        .map(Typology.totp)
+        ?? .defaultTotp
+    } else {
+      return nil
+    }
+    
+    self.init(
+      isFromQRCode: true,
+      digits: digits,
+      algorithm: algorithm,
+      typology: typology,
+      secret: secret,
+      issuer: issuer,
+      label: String(issuerAndLabel.last!)
+    )
+  }
+}
+
+
 extension Password.Typology: Equatable { }
 
 extension Password.Typology: Hashable { }
@@ -61,6 +138,19 @@ extension Password.Typology: CustomStringConvertible {
     }
   }
 }
+
 extension Password.Typology: Identifiable {
   public var id: String { description }
+}
+
+
+// MARK: - Defaults
+
+extension Password {
+  fileprivate static let defaultDigits: UInt8 = 6
+}
+
+extension Password.Typology {
+  fileprivate static let defaultHotp = Self.hotp(0)
+  fileprivate static let defaultTotp = Self.totp(30)
 }
