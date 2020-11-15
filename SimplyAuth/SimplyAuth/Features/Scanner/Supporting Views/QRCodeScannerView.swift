@@ -20,7 +20,7 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
     }
   }
   
-  @Binding var qrCode: String
+  @Binding var qrCode: String?
   
   func makeCoordinator() -> Coordinator {
     Coordinator(self)
@@ -32,5 +32,11 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
     return vc
   }
   
-  func updateUIViewController(_ uiViewController: QRCodeScannerViewController, context: Context) { }
+  func updateUIViewController(_ uiViewController: QRCodeScannerViewController, context: Context) {
+    if qrCode == nil {
+      uiViewController.startCapture()
+    } else {
+      uiViewController.stopCapture()
+    }
+  }
 }

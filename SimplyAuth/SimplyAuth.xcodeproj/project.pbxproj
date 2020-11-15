@@ -11,6 +11,7 @@
 		CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF02328524D5CCEA00B7D8A8 /* ContentView.swift */; };
 		CF02328824D5CCEB00B7D8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */; };
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
+		CF0F0E882561763000867B45 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F0E872561763000867B45 /* ErrorMessage.swift */; };
 		CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2850F62519CECD00C50DD0 /* TOTPView.swift */; };
 		CF28FD65253355F1004D7B5F /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28FD64253355F1004D7B5F /* BlurView.swift */; };
 		CF5304CA25400B2D0093A046 /* EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5304C925400B2D0093A046 /* EditState.swift */; };
@@ -55,6 +56,7 @@
 		CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF0F0E872561763000867B45 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		CF2850F62519CECD00C50DD0 /* TOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTPView.swift; sourceTree = "<group>"; };
 		CF28FD64253355F1004D7B5F /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		CF5304C925400B2D0093A046 /* EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditState.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */,
 				CFA4AD7024D70F6500DDCDDC /* HOTP.swift */,
 				CFA4AD7224D70FC400DDCDDC /* Password.swift */,
+				CF0F0E872561763000867B45 /* ErrorMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				CFE90BA1251B259900E2A49A /* Extensions.swift in Sources */,
 				CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */,
 				CFBA04DA2525A83600AD559B /* ScannerAction.swift in Sources */,
+				CF0F0E882561763000867B45 /* ErrorMessage.swift in Sources */,
 				CFA4AD7324D70FC400DDCDDC /* Password.swift in Sources */,
 				CFBBF53B25208DD20048E689 /* HomeView.swift in Sources */,
 				CF5304CD25400E680093A046 /* EditAction.swift in Sources */,

@@ -9,6 +9,8 @@ import Foundation
 
 enum ScannerAction {
   case dismissButtonTapped
+  case errorAlertDismissed
   case manualEntryButtonTapped
-  case qrCodeFound(String)
+  case passwordFound(Password)
+  case qrCodeFound(String?)
 }

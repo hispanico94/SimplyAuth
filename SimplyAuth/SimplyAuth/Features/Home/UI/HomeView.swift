@@ -50,15 +50,17 @@ struct HomeView: View {
           )
           .sheet(
             isPresented: viewStore.binding(
-              get: \.isScannerSheetPresented,
+              get: \.isScannerPresented,
               send: HomeAction.setScannerSheet(isPresented:)
             ),
             content: {
-              ScannerView(
-                store: self.store.scope(
-                  state: \.scanner,
+              IfLetStore(
+                store.scope(
+                  state: \.optionalScanner,
                   action: HomeAction.scanner
-                ))
+                ),
+                then: ScannerView.init(store:)
+              )
             }
           )
           .onAppear { viewStore.send(.onAppear) }

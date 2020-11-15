@@ -12,10 +12,24 @@ let scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state, action,
   switch action {
   case .dismissButtonTapped:
     return .none
+    
+  case .errorAlertDismissed:
+    state.errorAlertMessage = nil
+    state.qrCodeString = nil
+    return .none
+    
   case .manualEntryButtonTapped:
     return .none
+    
+  case .passwordFound:
+    return .none
+    
   case .qrCodeFound(let qrCode):
-    state.qrCode = qrCode
+    state.qrCodeString = qrCode
+    if let newPassword = qrCode.flatMap(Password.init(string:)) {
+      return Effect(value: .passwordFound(newPassword))
+    }
+    state.errorAlertMessage = "Failed to read QR code"
     return .none
   }
 }

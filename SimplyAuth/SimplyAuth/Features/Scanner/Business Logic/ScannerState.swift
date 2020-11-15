@@ -8,5 +8,6 @@
 import Foundation
 
 struct ScannerState: Equatable {
-  var qrCode: String? = nil
+  var qrCodeString: String? = nil
+  var errorAlertMessage: String? = nil
 }

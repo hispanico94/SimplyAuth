@@ -81,15 +81,7 @@ final class QRCodeScannerViewController: UIViewController {
     previewLayer.videoGravity = .resizeAspectFill
     view.layer.addSublayer(previewLayer)
     
-    captureSession.startRunning()
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    if (captureSession?.isRunning == false) {
-      captureSession.startRunning()
-    }
+    startCapture()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -103,10 +95,20 @@ final class QRCodeScannerViewController: UIViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
-    if (captureSession?.isRunning == true) {
+    stopCapture()
+    captureSession = nil
+  }
+  
+  func startCapture() {
+    if captureSession?.isRunning == false {
+      captureSession.startRunning()
+    }
+  }
+  
+  func stopCapture() {
+    if captureSession?.isRunning == true {
       captureSession.stopRunning()
     }
-    captureSession = nil
   }
   
   private func failed() {
@@ -125,7 +127,6 @@ final class QRCodeScannerViewController: UIViewController {
 
 extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
   func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-    captureSession.stopRunning()
     
     if let metadataObject = metadataObjects.first {
       guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
@@ -133,7 +134,5 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
       AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
       found(code: stringValue)
     }
-    
-    dismiss(animated: true)
   }
 }

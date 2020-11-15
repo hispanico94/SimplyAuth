@@ -8,16 +8,14 @@
 import ComposableArchitecture
 import Foundation
 
-let homeReducer = Reducer.combine(
-  scannerReducer
-    .pullback(
-      state: \HomeState.scanner,
-      action: /HomeAction.scanner,
-      environment: { _ in }
-    ),
-  _homeReducer
-)
-
+let homeReducer = scannerReducer
+  .optional
+  .pullback(
+    state: \HomeState.optionalScanner,
+    action: /HomeAction.scanner,
+    environment: { _ in }
+  )
+  .combined(with: _homeReducer)
 
 private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, action, environment in
   struct ClockTimerID: Hashable { }
@@ -131,21 +129,26 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     }
     
   case .scanner(.dismissButtonTapped):
-    state.isScannerSheetPresented = false
+    state.optionalScanner = nil
     return .none
     
   case .scanner(.manualEntryButtonTapped):
-    state.isScannerSheetPresented = false
-    // TODO: present add password sheet
+    state.optionalScanner = nil
+    state.newPasswordToAdd = Password(secret: "", issuer: "", label: "")
+    state.isAddPasswordSheetPresented = true
     return .none
     
-  case .scanner(.qrCodeFound):
-    state.isScannerSheetPresented = false
-    // TODO: present add password sheet
+  case .scanner(.passwordFound(let newPassword)):
+    state.optionalScanner = nil
+    state.newPasswordToAdd = newPassword
+    state.isAddPasswordSheetPresented = true
+    return .none
+    
+  case .scanner:
     return .none
     
   case .setScannerSheet(let isPresented):
-    state.isScannerSheetPresented = isPresented
+    state.optionalScanner = isPresented ? .init() : nil
     return .none
     
   case .updatePassword(let password):

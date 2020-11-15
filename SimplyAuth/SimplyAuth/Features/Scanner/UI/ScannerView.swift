@@ -17,7 +17,7 @@ struct ScannerView: View {
         ZStack {
           QRCodeScannerView(
             qrCode: viewStore.binding(
-              get: { _ in "" },
+              get: { $0.qrCodeString },
               send: ScannerAction.qrCodeFound
             )
           )
@@ -34,6 +34,13 @@ struct ScannerView: View {
           }
           
         }
+        .alert(
+          item: viewStore.binding(
+            get: { $0.errorAlertMessage.map(ErrorMessage.init) },
+            send: ScannerAction.errorAlertDismissed
+          ),
+          content: { Alert(title: Text($0.title), message: Text($0.message)) }
+        )
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(
           leading: Button(
