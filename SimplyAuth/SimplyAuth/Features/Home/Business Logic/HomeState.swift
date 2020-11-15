@@ -13,9 +13,6 @@ struct HomeState: Equatable {
   
   var optionalScanner: ScannerState?
   
-  var newPasswordToAdd: Password?
-  var isAddPasswordSheetPresented: Bool = false
-  
   var cells: [OTPCell] {
     passwords
       .map({ password in

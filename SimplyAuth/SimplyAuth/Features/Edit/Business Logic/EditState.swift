@@ -12,6 +12,6 @@ struct EditState: Equatable {
   let digits: [UInt8] = [6, 7, 8]
   let passwordTypologies: [Password.Typology] = [.hotp(0), .totp(30)]
   
-  var isNewPassword: Bool = true
-  var password: Password = Password(secret: "", issuer: "", label: "")
+  var isNewPassword: Bool
+  var password: Password
 }

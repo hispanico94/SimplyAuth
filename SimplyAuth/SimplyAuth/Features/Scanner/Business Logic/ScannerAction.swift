@@ -11,6 +11,8 @@ enum ScannerAction {
   case dismissButtonTapped
   case errorAlertDismissed
   case manualEntryButtonTapped
-  case passwordFound(Password)
+  case passwordCreated(Password)
   case qrCodeFound(String?)
+  case edit(EditAction)
+  case setEditNavigation(isActive: Bool)
 }

@@ -13,38 +13,35 @@ struct EditView: View {
   
   var body: some View {
     WithViewStore(store) { viewStore in
-      NavigationView {
-        Form {
-          Section(header: Text("Issuer")) {
-            issuerTextField(viewStore)
-          }
-          Section(header: Text("Account")) {
-            accountTextField(viewStore)
+      Form {
+        Section(header: Text("Issuer")) {
+          issuerTextField(viewStore)
+        }
+        Section(header: Text("Account")) {
+          accountTextField(viewStore)
+        }
+        
+        if viewStore.password.isFromQRCode == false {
+          Section(header: Text("Secret")) {
+            secretTextField(viewStore)
           }
           
-          if viewStore.password.isFromQRCode == false {
-            Section(header: Text("Secret")) {
-              secretTextField(viewStore)
-            }
+          Section(header: Text("Advanced Options")) {
+            algorithmPicker(viewStore)
             
-            Section(header: Text("Advanced Options")) {
-              algorithmPicker(viewStore)
-              
-              digitsPicker(viewStore)
-              
-              typologyPicker(viewStore)
-              
-              typologySpecificPicker(viewStore)
-            }
+            digitsPicker(viewStore)
+            
+            typologyPicker(viewStore)
+            
+            typologySpecificPicker(viewStore)
           }
         }
-        .navigationTitle(viewStore.isNewPassword ? "New Password" : "Edit Password")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(
-          leading: Button("Cancel", action: { viewStore.send(.cancel) }),
-          trailing: Button("Save", action: { viewStore.send(.save) })
-        )
       }
+      .navigationTitle(viewStore.isNewPassword ? "New Password" : "Edit Password")
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationBarItems(
+        trailing: Button("Save", action: { viewStore.send(.save) })
+      )
     }
   }
   
@@ -158,6 +155,7 @@ struct EditView_Previews: PreviewProvider {
     EditView(
       store: Store(
         initialState: EditState(
+          isNewPassword: true,
           password: Password(
             secret: "JBSWY3DPEHPK3PXP",
             issuer: "Xcode",

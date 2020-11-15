@@ -132,16 +132,8 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     state.optionalScanner = nil
     return .none
     
-  case .scanner(.manualEntryButtonTapped):
+  case .scanner(.passwordCreated(let newPassword)):
     state.optionalScanner = nil
-    state.newPasswordToAdd = Password(secret: "", issuer: "", label: "")
-    state.isAddPasswordSheetPresented = true
-    return .none
-    
-  case .scanner(.passwordFound(let newPassword)):
-    state.optionalScanner = nil
-    state.newPasswordToAdd = newPassword
-    state.isAddPasswordSheetPresented = true
     return .none
     
   case .scanner:

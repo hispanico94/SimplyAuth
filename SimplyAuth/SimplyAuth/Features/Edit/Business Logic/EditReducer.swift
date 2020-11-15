@@ -38,8 +38,6 @@ let editReducer = Reducer<EditState, EditAction, Void> { state, action, _ in
     guard let newCounter = UInt(counterString) else { return .none }
     state.password.typology = .hotp(newCounter)
     return .none
-  case .cancel:
-    return .none
   case .save:
     return .none
   }

@@ -8,7 +8,16 @@
 import ComposableArchitecture
 import Foundation
 
-let scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state, action, _ in
+let scannerReducer = editReducer
+  .optional
+  .pullback(
+    state: \ScannerState.optionalEditState,
+    action: /ScannerAction.edit,
+    environment: { _ in }
+  )
+  .combined(with: _scannerReducer)
+
+private let _scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state, action, _ in
   switch action {
   case .dismissButtonTapped:
     return .none
@@ -19,17 +28,36 @@ let scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state, action,
     return .none
     
   case .manualEntryButtonTapped:
+    state.optionalEditState = EditState(
+      isNewPassword: true,
+      password: Password(secret: "", issuer: "", label: "")
+    )
     return .none
     
-  case .passwordFound:
+  case .passwordCreated:
     return .none
     
   case .qrCodeFound(let qrCode):
-    state.qrCodeString = qrCode
     if let newPassword = qrCode.flatMap(Password.init(string:)) {
-      return Effect(value: .passwordFound(newPassword))
+      state.password = newPassword
+      return .none
     }
+    state.qrCodeString = qrCode
     state.errorAlertMessage = "Failed to read QR code"
+    return .none
+  
+  case .edit(.save):
+    guard let newPassword = state.password else { return .none }
+    return .init(value: .passwordCreated(newPassword))
+    
+  case .edit:
+    return .none
+    
+  case .setEditNavigation(false):
+    state.password = nil
+    return .none
+    
+  case .setEditNavigation(true):
     return .none
   }
 }

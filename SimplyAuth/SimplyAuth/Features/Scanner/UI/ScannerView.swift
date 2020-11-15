@@ -25,12 +25,27 @@ struct ScannerView: View {
           VStack {
             Spacer()
             
-            Text("Inquadra il codice QR")
+            Text("Point to the QR code")
               .padding(.horizontal, 24)
               .padding(.vertical, 16)
               .background(BlurView(style: .systemThinMaterial))
               .clipShape(Capsule())
               .padding(.bottom, 16)
+            
+            NavigationLink(
+              destination: IfLetStore(store.scope(
+                state: \.optionalEditState,
+                action: ScannerAction.edit
+              ),
+              then: EditView.init(store:)
+              ),
+              isActive: viewStore.binding(
+                get: \.isEditNavigationActive,
+                send: ScannerAction.setEditNavigation(isActive:)
+              ),
+              label: { EmptyView() }
+            )
+            .frame(width: 0, height: 0)
           }
           
         }

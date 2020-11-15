@@ -17,6 +17,5 @@ enum EditAction {
   case periodChanged(String)
   case counterChanged(String)
   
-  case cancel
   case save
 }
