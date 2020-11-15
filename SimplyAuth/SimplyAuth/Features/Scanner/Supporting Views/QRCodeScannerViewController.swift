@@ -40,6 +40,42 @@ final class QRCodeScannerViewController: UIViewController {
     super.viewDidLoad()
     
     view.backgroundColor = UIColor.black
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    createCaptureSession()
+    startCapture()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    if sessionCreationFailed {
+      sessionCreationFailed = false
+      failed()
+    }
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    stopCapture()
+    deleteCaptureSession()
+  }
+  
+  func startCapture() {
+    if captureSession?.isRunning == false {
+      captureSession.startRunning()
+    }
+  }
+  
+  func stopCapture() {
+    if captureSession?.isRunning == true {
+      captureSession.stopRunning()
+    }
+  }
+  
+  private func createCaptureSession() {
     captureSession = AVCaptureSession()
     
     guard
@@ -80,35 +116,12 @@ final class QRCodeScannerViewController: UIViewController {
     previewLayer.frame = view.layer.bounds
     previewLayer.videoGravity = .resizeAspectFill
     view.layer.addSublayer(previewLayer)
-    
-    startCapture()
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    if sessionCreationFailed {
-      sessionCreationFailed = false
-      failed()
-    }
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    
-    stopCapture()
+  private func deleteCaptureSession() {
     captureSession = nil
-  }
-  
-  func startCapture() {
-    if captureSession?.isRunning == false {
-      captureSession.startRunning()
-    }
-  }
-  
-  func stopCapture() {
-    if captureSession?.isRunning == true {
-      captureSession.stopRunning()
-    }
+    previewLayer.removeFromSuperlayer()
+    previewLayer = nil
   }
   
   private func failed() {
