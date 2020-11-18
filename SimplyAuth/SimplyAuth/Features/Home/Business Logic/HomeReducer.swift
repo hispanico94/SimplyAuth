@@ -133,8 +133,18 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     return .none
     
   case .scanner(.passwordCreated(let newPassword)):
+    state.passwords.append(newPassword)
     state.optionalScanner = nil
-    return .none
+    
+    let newIds = state.passwords.map(\.id)
+    return Effect.merge(
+      .fireAndForget {
+        environment.idStore.saveIds(newIds)
+      },
+      .fireAndForget {
+        try? environment.passwordStore.savePassword(newPassword)
+      }
+    )
     
   case .scanner:
     return .none

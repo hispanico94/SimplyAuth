@@ -28,10 +28,7 @@ private let _scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state
     return .none
     
   case .manualEntryButtonTapped:
-    state.optionalEditState = EditState(
-      isNewPassword: true,
-      password: Password(secret: "", issuer: "", label: "")
-    )
+    state.password = Password(secret: "", issuer: "", label: "")
     return .none
     
   case .passwordCreated:
