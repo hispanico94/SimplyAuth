@@ -56,20 +56,38 @@ extension PasswordStore {
 
 // MARK: Mock implementation
 
+private let secrets = [
+  "dsadasdhkakgkfskof",
+  "SKDFHSDVNKSKN",
+  "FPDBBGGPDFJV",
+  "FGNVMDFJVODFJVODFB",
+  "VODFMIVMDFPPPVSDP",
+  "SFJOFSPMPDFKPOSDCMKSDPK",
+  "VUFDNNUFHVNDFHVIASD",
+  "POSDMIIDFVDNFDHUHGDIF",
+  "DFGPDFPFPVFDVFJKKJSA",
+  "DOIFJODFJVOFJJFVJJFV",
+  "ASIDIASDJMAJSDJASDO",
+  "SJDOJDVFJBSDBAIIAWU",
+  "ADSPJDJXMMVXCHSDASD",
+  "SDFPDSCPDSKDCDSP",
+  "ASDSAPCPKSCPKASPKX"
+]
+
 extension PasswordStore {
   static let mock = PasswordStore(
     savePassword: { print("Password saved: \($0)") },
     savePassowrds: { print("Passwords saved: \($0)") },
     getPassword: {
       print("Requested password with UUID: \($0)")
-      return Just(Password(id: $0, secret: "sfdlskje9023fjsk", issuer: "MockPasswordStore", label: "mocked OTP"))
+      return Just(Password(id: $0, secret: secrets.randomElement()!, issuer: "MockPasswordStore", label: "mocked OTP"))
         .setFailureType(to: PasswordStore.Error.self)
         .eraseToAnyPublisher()
     },
     getPasswords: { ids in
       print("Rquested passwords with UUIDs: \(ids)")
       let passwords = ids
-        .map { Password(id: $0, secret: "dsadasdhkakgkfskofk\(Int.random(in: 1...100))", issuer: "MockPasswordStore\(Int.random(in: 1...100))", label: "mocked OTP \(Int.random(in: 1...100))") }
+        .map { Password(id: $0, secret: secrets.randomElement()!, issuer: "MockPasswordStore\(Int.random(in: 1...100))", label: "mocked OTP \(Int.random(in: 1...100))") }
       return Just(passwords)
         .setFailureType(to: PasswordStore.Error.self)
         .eraseToAnyPublisher()

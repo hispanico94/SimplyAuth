@@ -19,7 +19,7 @@ struct SimplyAuthApp: App {
                 unixEpochSeconds: 1601200819
               ),
               reducer: homeReducer,
-              environment: .mock
+              environment: .mockDateLive
             )
           )
         }
