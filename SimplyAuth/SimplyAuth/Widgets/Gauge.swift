@@ -34,7 +34,7 @@ struct Gauge: View {
         .rotationEffect(.degrees(90))
         .rotation3DEffect(.degrees(180), axis: (x: 1.0, y: 0.0, z: 0.0))
         .frame(width: width, height: height)
-        .animation(progress == 0 ? .none : .linear(duration: 1))
+        .animation(progress == 0 ? .none : .linear(duration: 1), value: progress)
       
       Text(text ?? "\(value: percent, using: .noDecimalsFormatter)%")
         .font(.system(size: 14 * multiplier))
