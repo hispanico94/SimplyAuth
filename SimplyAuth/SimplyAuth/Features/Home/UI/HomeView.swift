@@ -25,13 +25,30 @@ struct HomeView: View {
               .padding(.vertical, 8)
               .contextMenu {
                 Button(
-                  action: { viewStore.send(.password(id: cell.id, action: .copyToClipboard)) },
+                  action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                      viewStore.send(.password(id: cell.id, action: .copyToClipboard))
+                    }
+                  },
                   label: { Label("Copy", systemImage: "doc.on.doc") })
                 Button(
-                  action: { viewStore.send(.password(id: cell.id, action: .edit)) },
+                  action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                      viewStore.send(.password(id: cell.id, action: .edit))
+                    }
+                  },
                   label: { Label("Edit", systemImage: "square.and.pencil") })
+                
+                Divider()
+                
                 Button(
-                  action: { viewStore.send(.password(id: cell.id, action: .delete)) },
+                  action: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                      withAnimation { () -> Void in
+                        viewStore.send(.password(id: cell.id, action: .delete))
+                      }
+                    }
+                  },
                   label: { Label("Delete", systemImage: "trash") })
                   .foregroundColor(.red)
               }
@@ -85,7 +102,7 @@ struct HomeView_Previews: PreviewProvider {
     HomeView(
       store: Store(
         initialState: HomeState(
-          passwords: [],
+          passwords: [Password(id: UUID.allZeros, secret: "ksahdkaskdaskj", issuer: "MockPasswordStore", label: "mocked OTP")],
           unixEpochSeconds: 1601200819
         ),
         reducer: homeReducer,

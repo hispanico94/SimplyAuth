@@ -29,9 +29,12 @@ struct TOTPView: View {
         .font(.largeTitle)
     }
     .padding(16)
-    .background(Color(.secondarySystemBackground))
-    .cornerRadius(16)
-    .shadow(radius: 4, y: -2)
+    .background(
+      RoundedRectangle(cornerRadius: 16, style: .continuous)
+        .fill(Color(.secondarySystemBackground))
+        .shadow(radius: 4, y: -2)
+    )
+    .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
   }
 }
 
