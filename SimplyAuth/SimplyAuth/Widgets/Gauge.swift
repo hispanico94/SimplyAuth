@@ -30,11 +30,11 @@ struct Gauge: View {
       
       Circle()
         .trim(from: progress, to: 1)
-        .stroke(color, style: StrokeStyle(lineWidth: 8 * multiplier, lineCap: .round))
+        .stroke(color, style: StrokeStyle(lineWidth: 8 * multiplier, lineCap: .butt))
         .rotationEffect(.degrees(90))
         .rotation3DEffect(.degrees(180), axis: (x: 1.0, y: 0.0, z: 0.0))
         .frame(width: width, height: height)
-        .animation(.linear(duration: 1))
+        .animation(progress == 0 ? .none : .linear(duration: 1))
       
       Text(text ?? "\(value: percent, using: .noDecimalsFormatter)%")
         .font(.system(size: 14 * multiplier))
