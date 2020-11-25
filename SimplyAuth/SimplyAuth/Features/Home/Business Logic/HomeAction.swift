@@ -10,6 +10,7 @@ import Foundation
 enum HomeAction {
   case addPassword(Password)
   case clockTick(secondsSince1970: UInt)
+  case edit(EditAction)
   case ids([UUID])
   case onAppear
   case onDisappear
@@ -17,6 +18,7 @@ enum HomeAction {
   case passwords(Result<[Password], PasswordStore.Error>)
   case reorder(source: IndexSet, destination: Int)
   case scanner(ScannerAction)
+  case setEditNavigation(isActive: Bool)
   case setScannerSheet(isPresented: Bool)
   case updatePassword(Password)
 }

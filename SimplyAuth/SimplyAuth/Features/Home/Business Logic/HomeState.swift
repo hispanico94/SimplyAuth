@@ -13,6 +13,16 @@ struct HomeState: Equatable {
   
   var optionalScanner: ScannerState?
   
+  var passwordToEdit: Password?
+  var optionalEdit: EditState? {
+    get {
+      passwordToEdit.map { EditState(isNewPassword: false, password: $0) }
+    }
+    set {
+      passwordToEdit = newValue?.password
+    }
+  }
+  
   var cells: [OTPCell] {
     passwords
       .map({ password in
@@ -37,5 +47,6 @@ struct HomeState: Equatable {
       })
   }
   
+  var isEditNavigationActive: Bool { optionalEdit != nil }
   var isScannerPresented: Bool { optionalScanner != nil }
 }

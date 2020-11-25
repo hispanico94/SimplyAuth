@@ -54,6 +54,21 @@ struct HomeView: View {
               }
             }
             .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
+            
+            NavigationLink(
+              destination: IfLetStore(store.scope(
+                state: \.optionalEdit,
+                action: HomeAction.edit
+              ),
+              then: EditView.init(store:)
+              ),
+              isActive: viewStore.binding(
+                get: \.isEditNavigationActive,
+                send: HomeAction.setEditNavigation(isActive:)
+              ),
+              label: { EmptyView() }
+            )
+            .frame(width: 0, height: 0)
           }
           .navigationBarItems(
             leading: Button(

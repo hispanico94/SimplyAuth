@@ -13,7 +13,14 @@ let homeReducer = scannerReducer
   .pullback(
     state: \HomeState.optionalScanner,
     action: /HomeAction.scanner,
-    environment: { _ in }
+    environment: { _ in })
+  .combined(
+    with: editReducer
+      .optional
+      .pullback(
+        state: \HomeState.optionalEdit,
+        action: /HomeAction.edit,
+        environment: { _ in })
   )
   .combined(with: _homeReducer)
 
@@ -41,6 +48,22 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
       .eraseToEffect()
       .catchToEffect()
       .map(HomeAction.passwords)
+    
+  case .edit(.save):
+    guard
+      let editedPassword = state.passwordToEdit,
+      let oldPasswordIndex = state.passwords.firstIndex(where: { $0.id == editedPassword.id })
+    else { return .none }
+    
+    state.passwords[oldPasswordIndex] = editedPassword
+    state.passwordToEdit = nil
+    
+    return .fireAndForget {
+      try? environment.passwordStore.savePassword(editedPassword)
+    }
+    
+  case .edit:
+    return .none
     
   case .onAppear:
     let secondOffset = environment.date()
@@ -99,8 +122,7 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     
     
   case .password(let id, action: .edit):
-    print("EDITED PASSWORD WITH ID: \(id)")
-    
+    state.passwordToEdit = state.passwords.first(where: { $0.id == id })
     return .none
     
   case .password(let id, .updateCounter):
@@ -147,6 +169,13 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     )
     
   case .scanner:
+    return .none
+    
+  case .setEditNavigation(false):
+    state.passwordToEdit = nil
+    return .none
+    
+  case .setEditNavigation(true):
     return .none
     
   case .setScannerSheet(let isPresented):
