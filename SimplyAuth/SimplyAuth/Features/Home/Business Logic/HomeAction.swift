@@ -13,7 +13,6 @@ enum HomeAction {
   case edit(EditAction)
   case ids([UUID])
   case onAppear
-  case onDisappear
   case password(id: UUID, action: PasswordAction)
   case passwords(Result<[Password], PasswordStore.Error>)
   case reorder(source: IndexSet, destination: Int)

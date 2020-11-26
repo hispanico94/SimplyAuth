@@ -66,6 +66,12 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     return .none
     
   case .onAppear:
+    guard state.firstAppearance else {
+      return .none
+    }
+    
+    defer { state.firstAppearance = false }
+    
     let secondOffset = environment.date()
       .timeIntervalSince1970
       .truncatingRemainder(dividingBy: 1)
@@ -83,9 +89,6 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
         .map(HomeAction.clockTick)
         .eraseToEffect()
     )
-    
-  case .onDisappear:
-    return .cancel(id: ClockTimerID())
     
   case .password(let id, action: .copyToClipboard):
     guard

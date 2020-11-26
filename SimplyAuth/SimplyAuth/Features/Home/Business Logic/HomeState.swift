@@ -8,6 +8,7 @@
 import Foundation
 
 struct HomeState: Equatable {
+  var firstAppearance: Bool = true
   var passwords: [Password] = []
   var unixEpochSeconds: UInt = 0
   
