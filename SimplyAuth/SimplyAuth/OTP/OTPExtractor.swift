@@ -46,7 +46,7 @@ private func simmetricKey(fromSecret secret: String) -> SymmetricKey? {
     .map(SymmetricKey.init(data:))
 }
 
-private func getOTPCode(key: SymmetricKey, authenticationNumber: UInt, algorithm: Algorithm, digits: UInt8) -> String {
+private func getOTPCode(key: SymmetricKey, authenticationNumber: UInt, algorithm: Algorithm, digits: UInt8) -> String? {
   var mutableAuthenticationNumber = authenticationNumber
   let authenticationData = Data(bytes: &mutableAuthenticationNumber, count: MemoryLayout<UInt>.size)
   
@@ -68,7 +68,7 @@ private func getOTPCode(key: SymmetricKey, authenticationNumber: UInt, algorithm
   
   let otpCode = truncatedHash % UInt32(pow(10, Float(digits)))
   
-  return "\(otpCode)"
+  return formatNumber(otpCode, forNumberOfDigits: digits)
 }
 
 private func truncateHash(_ pointer: UnsafeRawBufferPointer) -> UInt32 {
@@ -82,4 +82,30 @@ private func truncateHash(_ pointer: UnsafeRawBufferPointer) -> UInt32 {
     .pointee
     .bigEndian
     & 0x7fffffff
+}
+
+private func formatNumber(_ number: UInt32, forNumberOfDigits digits: UInt8) -> String? {
+  let f = NumberFormatter()
+  
+  f.numberStyle = .none
+  
+  f.minimumFractionDigits = 0
+  f.maximumFractionDigits = 0
+  f.minimumIntegerDigits = Int(digits)
+  f.maximumIntegerDigits = Int(digits)
+  
+  f.groupingSeparator = " "
+  f.usesGroupingSeparator = true
+  switch digits {
+  case 6:
+    f.groupingSize = 3
+  case 7:
+    f.groupingSize = 4
+  case 8:
+    f.groupingSize = 2
+  default:
+    f.groupingSize = .max
+  }
+  
+  return f.string(from: NSNumber(value: number))
 }
