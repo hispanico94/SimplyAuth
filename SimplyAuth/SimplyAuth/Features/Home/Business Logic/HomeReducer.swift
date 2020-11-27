@@ -130,12 +130,15 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     
   case .password(let id, .updateCounter):
     guard
-      var password = state.passwords.first(where: { $0.id == id }),
-      case .hotp(var counter) = password.typology
+      let index = state.passwords.firstIndex(where: { $0.id == id }),
+      case .hotp(var counter) = state.passwords[index].typology
     else { return .none }
     
+    var password = state.passwords[index]
     counter += 1
     password.typology = .hotp(counter)
+    
+    state.passwords[index] = password
     
     return .fireAndForget {
       try? environment.passwordStore.savePassword(password)

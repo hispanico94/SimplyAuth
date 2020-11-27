@@ -25,7 +25,7 @@ enum OTPExtractor {
   
   static func hotpCode(from password: Password) -> String? {
     guard
-      case .totp(let counter) = password.typology,
+      case .hotp(let counter) = password.typology,
       let symmetricKey = simmetricKey(fromSecret: password.secret)
     else { return nil }
     
