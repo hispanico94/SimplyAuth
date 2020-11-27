@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CF02328424D5CCEA00B7D8A8 /* SimplyAuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */; };
-		CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF02328524D5CCEA00B7D8A8 /* ContentView.swift */; };
 		CF02328824D5CCEB00B7D8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */; };
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
 		CF0F0E882561763000867B45 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F0E872561763000867B45 /* ErrorMessage.swift */; };
@@ -17,13 +16,11 @@
 		CF5304CA25400B2D0093A046 /* EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5304C925400B2D0093A046 /* EditState.swift */; };
 		CF5304CD25400E680093A046 /* EditAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5304CC25400E680093A046 /* EditAction.swift */; };
 		CF5BEE06250CCBBC006C269C /* OTPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BEE05250CCBBC006C269C /* OTPCell.swift */; };
-		CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF63557624EA7A7400FD73A6 /* AppReducer.swift */; };
 		CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4224DC74CE00D582A1 /* Keychain.swift */; };
 		CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4424DC779300D582A1 /* KeychainError.swift */; };
 		CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7DB16F250A0137001999E4 /* HomeAction.swift */; };
 		CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */; };
 		CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */; };
-		CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9FEE4124D7E50100A3BA0C /* AppState.swift */; };
 		CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */; };
 		CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */; };
 		CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD7024D70F6500DDCDDC /* HOTP.swift */; };
@@ -42,8 +39,6 @@
 		CFCC276925230E9000D79AF6 /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC276825230E9000D79AF6 /* QRCodeScannerView.swift */; };
 		CFE90B9D251B1F9D00E2A49A /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE90B9C251B1F9D00E2A49A /* Gauge.swift */; };
 		CFE90BA1251B259900E2A49A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE90BA0251B259900E2A49A /* Extensions.swift */; };
-		CFF0407924DA853700D80F50 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407824DA853700D80F50 /* AppAction.swift */; };
-		CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */; };
 		CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407C24DA8B2100D80F50 /* IDStore.swift */; };
 		CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */; };
 		CFF5434B25029D40004AA37A /* HomeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5434A25029D40004AA37A /* HomeState.swift */; };
@@ -52,7 +47,6 @@
 /* Begin PBXFileReference section */
 		CF02328024D5CCEA00B7D8A8 /* SimplyAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplyAuthApp.swift; sourceTree = "<group>"; };
-		CF02328524D5CCEA00B7D8A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,12 +56,10 @@
 		CF5304C925400B2D0093A046 /* EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditState.swift; sourceTree = "<group>"; };
 		CF5304CC25400E680093A046 /* EditAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAction.swift; sourceTree = "<group>"; };
 		CF5BEE05250CCBBC006C269C /* OTPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCell.swift; sourceTree = "<group>"; };
-		CF63557624EA7A7400FD73A6 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		CF70CE4224DC74CE00D582A1 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		CF70CE4424DC779300D582A1 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		CF7DB16F250A0137001999E4 /* HomeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAction.swift; sourceTree = "<group>"; };
 		CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPExtractor.swift; sourceTree = "<group>"; };
-		CF9FEE4124D7E50100A3BA0C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
@@ -86,8 +78,6 @@
 		CFCC276825230E9000D79AF6 /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		CFE90B9C251B1F9D00E2A49A /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
 		CFE90BA0251B259900E2A49A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CFF0407824DA853700D80F50 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
-		CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		CFF0407C24DA8B2100D80F50 /* IDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStore.swift; sourceTree = "<group>"; };
 		CFF0407E24DA8B3500D80F50 /* PasswordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStore.swift; sourceTree = "<group>"; };
 		CFF5434A25029D40004AA37A /* HomeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeState.swift; sourceTree = "<group>"; };
@@ -130,7 +120,7 @@
 				CF70CE4124DC74B300D582A1 /* Keychain */,
 				CFA4AD6924D70E2D00DDCDDC /* Models */,
 				CFF5434425029AE6004AA37A /* Features */,
-				CF02328524D5CCEA00B7D8A8 /* ContentView.swift */,
+				CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */,
 				CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */,
 				CF02328C24D5CCEB00B7D8A8 /* Info.plist */,
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
@@ -285,21 +275,8 @@
 				CF5304C825400AF40093A046 /* Edit */,
 				CFCC276025230C8A00D79AF6 /* Scanner */,
 				CFF5434925029D34004AA37A /* Home */,
-				CFF5434525029AF9004AA37A /* App */,
 			);
 			path = Features;
-			sourceTree = "<group>";
-		};
-		CFF5434525029AF9004AA37A /* App */ = {
-			isa = PBXGroup;
-			children = (
-				CF02328324D5CCEA00B7D8A8 /* SimplyAuthApp.swift */,
-				CF9FEE4124D7E50100A3BA0C /* AppState.swift */,
-				CFF0407824DA853700D80F50 /* AppAction.swift */,
-				CFF0407A24DA8A0C00D80F50 /* AppEnvironment.swift */,
-				CF63557624EA7A7400FD73A6 /* AppReducer.swift */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		CFF5434925029D34004AA37A /* Home */ = {
@@ -400,16 +377,12 @@
 				CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */,
 				CFBA04E42525AFE400AD559B /* ScannerView.swift in Sources */,
 				CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */,
-				CF02328624D5CCEA00B7D8A8 /* ContentView.swift in Sources */,
 				CFBC0358251DC79F00BDDA0A /* HOTPView.swift in Sources */,
 				CFC87D602545C0F700788EB9 /* EditView.swift in Sources */,
-				CF63557724EA7A7400FD73A6 /* AppReducer.swift in Sources */,
-				CF9FEE4224D7E50100A3BA0C /* AppState.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
 				CFBA04E02525ADDE00AD559B /* ScannerReducer.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
 				CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */,
-				CFF0407924DA853700D80F50 /* AppAction.swift in Sources */,
 				CFCC276525230E4500D79AF6 /* QRCodeScannerViewController.swift in Sources */,
 				CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */,
 				CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */,
@@ -422,7 +395,6 @@
 				CFE90B9D251B1F9D00E2A49A /* Gauge.swift in Sources */,
 				CFBE2522250B4D95008EE40C /* HomeReducer.swift in Sources */,
 				CF02328424D5CCEA00B7D8A8 /* SimplyAuthApp.swift in Sources */,
-				CFF0407B24DA8A0C00D80F50 /* AppEnvironment.swift in Sources */,
 				CF5BEE06250CCBBC006C269C /* OTPCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
