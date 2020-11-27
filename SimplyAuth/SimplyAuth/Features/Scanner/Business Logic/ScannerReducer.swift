@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 let scannerReducer = editReducer
-  .optional
+  .optional()
   .pullback(
     state: \ScannerState.optionalEditState,
     action: /ScannerAction.edit,

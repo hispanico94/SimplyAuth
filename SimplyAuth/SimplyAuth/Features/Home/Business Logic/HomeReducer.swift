@@ -9,14 +9,14 @@ import ComposableArchitecture
 import Foundation
 
 let homeReducer = scannerReducer
-  .optional
+  .optional()
   .pullback(
     state: \HomeState.optionalScanner,
     action: /HomeAction.scanner,
     environment: { _ in })
   .combined(
     with: editReducer
-      .optional
+      .optional()
       .pullback(
         state: \HomeState.optionalEdit,
         action: /HomeAction.edit,
