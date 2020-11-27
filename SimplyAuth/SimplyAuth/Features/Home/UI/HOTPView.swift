@@ -25,7 +25,6 @@ struct HOTPView: View {
         
         Button(action: onRefresh) {
           Image(systemName: "arrow.clockwise.circle")
-            .foregroundColor(.red)
             .font(.largeTitle)
         }
       }
