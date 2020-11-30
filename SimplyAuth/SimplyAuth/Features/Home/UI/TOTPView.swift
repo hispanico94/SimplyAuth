@@ -22,7 +22,11 @@ struct TOTPView: View {
         
         Spacer()
         
-        Gauge(percent: CGFloat(state.percentTimeLeft), text: state.timeLeft)
+        Gauge(
+          percent: CGFloat(state.percentTimeLeft),
+          text: state.timeLeft,
+          color: state.timeRemainingLow ? .red : .green
+        )
       }
       
       Text(state.currentPassword)
@@ -46,7 +50,8 @@ struct TOTPView_Previews: PreviewProvider {
       label: "foobar@gmail.com",
       currentPassword: "351 894",
       timeLeft: "13",
-      percentTimeLeft: 43.3
+      percentTimeLeft: 43.3,
+      timeRemainingLow: false
     ))
   }
 }

@@ -35,4 +35,5 @@ struct TOTPCell: Equatable, Identifiable {
   var currentPassword: String
   var timeLeft: String
   var percentTimeLeft: Double
+  var timeRemainingLow: Bool
 }

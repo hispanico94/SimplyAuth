@@ -36,13 +36,16 @@ struct HomeState: Equatable {
             currentPassword: OTPExtractor.hotpCode(from: password) ?? "ERROR"
           ))
         case .totp(let interval):
+          let secondsLeft = interval - (unixEpochSeconds % interval)
+          
           return .totp(TOTPCell(
             id: password.id,
             issuer: password.issuer,
             label: password.label,
             currentPassword: OTPExtractor.totpCode(from: password, unixEpochSeconds: unixEpochSeconds) ?? "ERROR",
-            timeLeft: "\(interval - (unixEpochSeconds % interval))",
-            percentTimeLeft: 100 * (Double(interval) - Double(unixEpochSeconds % interval)) / Double(interval)
+            timeLeft: "\(secondsLeft)",
+            percentTimeLeft: 100 * Double(secondsLeft) / Double(interval),
+            timeRemainingLow: secondsLeft <= 6
           ))
         }
       })
