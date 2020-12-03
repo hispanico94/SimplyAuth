@@ -81,6 +81,10 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
         .getIds()
         .map(HomeAction.ids)
         .eraseToEffect(),
+      Effect(value: environment.date().timeIntervalSince1970)
+        .map(UInt.init)
+        .map(HomeAction.clockTick)
+        .eraseToEffect(),
       Effect(value: ())
         .delay(for: .seconds(1 - secondOffset), tolerance: .milliseconds(10), scheduler: environment.mainQueue)
         .flatMap { _ in Effect.timer(id: ClockTimerID(), every: 1, tolerance: .milliseconds(10), on: environment.mainQueue) }
