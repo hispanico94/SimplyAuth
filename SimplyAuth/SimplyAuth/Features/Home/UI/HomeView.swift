@@ -52,6 +52,9 @@ struct HomeView: View {
                   label: { Label("Delete", systemImage: "trash") })
                   .foregroundColor(.red)
               }
+              .onTapGesture {
+                viewStore.send(.password(id: cell.id, action: .copyToClipboard))
+              }
             }
             .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
             
