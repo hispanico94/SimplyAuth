@@ -14,91 +14,106 @@ struct HomeView: View {
   var body: some View {
     WithViewStore(store) { viewStore in
       NavigationView {
-        ScrollView {
-          VStack {
-            ForEach(viewStore.cells) { cell in
-              getCellView(
-                from: cell,
-                onRefresh: { viewStore.send(.password(id: cell.id, action: .updateCounter)) }
-              )
-              .padding(.horizontal)
-              .padding(.vertical, 8)
-              .contextMenu {
-                Button(
-                  action: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                      viewStore.send(.password(id: cell.id, action: .copyToClipboard))
-                    }
-                  },
-                  label: { Label("Copy", systemImage: "doc.on.doc") })
-                Button(
-                  action: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                      viewStore.send(.password(id: cell.id, action: .edit))
-                    }
-                  },
-                  label: { Label("Edit", systemImage: "square.and.pencil") })
-                
-                Divider()
-                
-                Button(
-                  action: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                      withAnimation { () -> Void in
-                        viewStore.send(.password(id: cell.id, action: .delete))
+        ZStack {
+          ScrollView {
+            VStack {
+              ForEach(viewStore.cells) { cell in
+                getCellView(
+                  from: cell,
+                  onRefresh: { viewStore.send(.password(id: cell.id, action: .updateCounter)) }
+                )
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .contextMenu {
+                  Button(
+                    action: {
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        viewStore.send(.password(id: cell.id, action: .copyToClipboard))
                       }
-                    }
-                  },
-                  label: { Label("Delete", systemImage: "trash") })
-                  .foregroundColor(.red)
+                    },
+                    label: { Label("Copy", systemImage: "doc.on.doc") })
+                  Button(
+                    action: {
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        viewStore.send(.password(id: cell.id, action: .edit))
+                      }
+                    },
+                    label: { Label("Edit", systemImage: "square.and.pencil") })
+                  
+                  Divider()
+                  
+                  Button(
+                    action: {
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        withAnimation { () -> Void in
+                          viewStore.send(.password(id: cell.id, action: .delete))
+                        }
+                      }
+                    },
+                    label: { Label("Delete", systemImage: "trash") })
+                    .foregroundColor(.red)
+                }
+                .onTapGesture {
+                  viewStore.send(.password(id: cell.id, action: .copyToClipboard))
+                }
               }
-              .onTapGesture {
-                viewStore.send(.password(id: cell.id, action: .copyToClipboard))
-              }
-            }
-            .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
-            
-            NavigationLink(
-              destination: IfLetStore(store.scope(
-                state: \.optionalEdit,
-                action: HomeAction.edit
-              ),
-              then: EditView.init(store:)
-              ),
-              isActive: viewStore.binding(
-                get: \.isEditNavigationActive,
-                send: HomeAction.setEditNavigation(isActive:)
-              ),
-              label: { EmptyView() }
-            )
-            .frame(width: 0, height: 0)
-          }
-          .navigationBarItems(
-            leading: Button(
-              action: { viewStore.send(.setScannerSheet(isPresented: true)) },
-              label: {
-                Image(systemName: "plus.circle")
-                  .imageScale(.large)
-              }
-            ),
-            trailing: EditButton()
-          )
-          .sheet(
-            isPresented: viewStore.binding(
-              get: \.isScannerPresented,
-              send: HomeAction.setScannerSheet(isPresented:)
-            ),
-            content: {
-              IfLetStore(
-                store.scope(
-                  state: \.optionalScanner,
-                  action: HomeAction.scanner
+              .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
+              
+              NavigationLink(
+                destination: IfLetStore(store.scope(
+                  state: \.optionalEdit,
+                  action: HomeAction.edit
                 ),
-                then: ScannerView.init(store:)
+                then: EditView.init(store:)
+                ),
+                isActive: viewStore.binding(
+                  get: \.isEditNavigationActive,
+                  send: HomeAction.setEditNavigation(isActive:)
+                ),
+                label: { EmptyView() }
               )
+              .frame(width: 0, height: 0)
             }
-          )
-          .onAppear { viewStore.send(.onAppear) }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+              leading: Button(
+                action: { viewStore.send(.setScannerSheet(isPresented: true)) },
+                label: {
+                  Image(systemName: "plus.circle")
+                    .imageScale(.large)
+                }
+              ),
+              trailing: EditButton()
+            )
+            .sheet(
+              isPresented: viewStore.binding(
+                get: \.isScannerPresented,
+                send: HomeAction.setScannerSheet(isPresented:)
+              ),
+              content: {
+                IfLetStore(
+                  store.scope(
+                    state: \.optionalScanner,
+                    action: HomeAction.scanner
+                  ),
+                  then: ScannerView.init(store:)
+                )
+              }
+            )
+            .onAppear { viewStore.send(.onAppear) }
+          }
+          
+          VStack {
+            if viewStore.isMessageShown {
+              MessageBar(text: viewStore.message!)
+                .padding(.top, 8)
+                .transition(AnyTransition.move(edge: .top))
+                .animation(.easeInOut)
+                .zIndex(1)
+            }
+            
+            Spacer()
+          }
         }
       }
     }

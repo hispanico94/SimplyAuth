@@ -12,6 +12,8 @@ struct HomeState: Equatable {
   var passwords: [Password] = []
   var unixEpochSeconds: UInt = 0
   
+  var message: String? = nil
+  
   var optionalScanner: ScannerState?
   
   var passwordToEdit: Password?
@@ -53,4 +55,5 @@ struct HomeState: Equatable {
   
   var isEditNavigationActive: Bool { optionalEdit != nil }
   var isScannerPresented: Bool { optionalScanner != nil }
+  var isMessageShown: Bool { message != nil }
 }

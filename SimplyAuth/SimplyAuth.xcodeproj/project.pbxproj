@@ -22,6 +22,7 @@
 		CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7DB16F250A0137001999E4 /* HomeAction.swift */; };
 		CF938EC6257A20FB005ABB47 /* ScannerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF938EC5257A20FB005ABB47 /* ScannerEnvironment.swift */; };
 		CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */; };
+		CF9ECF79257E375100D071BB /* MessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9ECF78257E375100D071BB /* MessageBar.swift */; };
 		CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */; };
 		CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */; };
 		CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */; };
@@ -64,6 +65,7 @@
 		CF7DB16F250A0137001999E4 /* HomeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAction.swift; sourceTree = "<group>"; };
 		CF938EC5257A20FB005ABB47 /* ScannerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerEnvironment.swift; sourceTree = "<group>"; };
 		CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPExtractor.swift; sourceTree = "<group>"; };
+		CF9ECF78257E375100D071BB /* MessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBar.swift; sourceTree = "<group>"; };
 		CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		CFA4AD7024D70F6500DDCDDC /* HOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				CFE90B9C251B1F9D00E2A49A /* Gauge.swift */,
+				CF9ECF78257E375100D071BB /* MessageBar.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				CFF0407D24DA8B2100D80F50 /* IDStore.swift in Sources */,
 				CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */,
 				CFF0407F24DA8B3500D80F50 /* PasswordStore.swift in Sources */,
+				CF9ECF79257E375100D071BB /* MessageBar.swift in Sources */,
 				CFC87D5C254595D000788EB9 /* EditReducer.swift in Sources */,
 				CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */,
 				CF28FD65253355F1004D7B5F /* BlurView.swift in Sources */,

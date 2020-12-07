@@ -26,6 +26,7 @@ let homeReducer = scannerReducer
 
 private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state, action, environment in
   struct ClockTimerID: Hashable { }
+  struct MessageCancellableID: Hashable { }
   
   switch action {
   case .addPassword(let password):
@@ -112,10 +113,14 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
       otp.allSatisfy(\.isNumber)
     else { return .none }
     
-    return .fireAndForget {
-      environment.feedback.selectionFeedback()
-      environment.clipboard(otp)
-    }
+    return .merge(
+      .fireAndForget {
+        environment.feedback.selectionFeedback()
+        environment.clipboard(otp)
+      },
+      .cancel(id: MessageCancellableID()),
+      Effect(value: HomeAction.showMessage("OTP \(otp) copied!"))
+    )
     
   case .password(let id, action: .delete):
     guard
@@ -197,6 +202,18 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     return .fireAndForget {
       try? environment.passwordStore.savePassword(password)
     }
+    
+  case .showMessage(let message):
+    state.message = message
+    
+    return Effect(value: HomeAction.hideMessage)
+      .delay(for: .seconds(3), scheduler: environment.mainQueue)
+      .eraseToEffect()
+      .cancellable(id: MessageCancellableID(), cancelInFlight: true)
+    
+  case .hideMessage:
+    state.message = nil
+    return .none
     
   case .passwords(.failure(let error)):
     print("FAILURE RETURNING PASSWORDS: \(error)")
