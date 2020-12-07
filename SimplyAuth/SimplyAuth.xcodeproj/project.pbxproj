@@ -11,6 +11,7 @@
 		CF02328824D5CCEB00B7D8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328724D5CCEB00B7D8A8 /* Assets.xcassets */; };
 		CF02328B24D5CCEB00B7D8A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */; };
 		CF0F0E882561763000867B45 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0F0E872561763000867B45 /* ErrorMessage.swift */; };
+		CF221DA12578CB290004E63E /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF221DA02578CB290004E63E /* FeedbackGenerator.swift */; };
 		CF2850F72519CECD00C50DD0 /* TOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2850F62519CECD00C50DD0 /* TOTPView.swift */; };
 		CF28FD65253355F1004D7B5F /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28FD64253355F1004D7B5F /* BlurView.swift */; };
 		CF5304CA25400B2D0093A046 /* EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5304C925400B2D0093A046 /* EditState.swift */; };
@@ -19,6 +20,7 @@
 		CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4224DC74CE00D582A1 /* Keychain.swift */; };
 		CF70CE4524DC779300D582A1 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70CE4424DC779300D582A1 /* KeychainError.swift */; };
 		CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7DB16F250A0137001999E4 /* HomeAction.swift */; };
+		CF938EC6257A20FB005ABB47 /* ScannerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF938EC5257A20FB005ABB47 /* ScannerEnvironment.swift */; };
 		CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */; };
 		CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */; };
 		CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */; };
@@ -51,6 +53,7 @@
 		CF02328A24D5CCEB00B7D8A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF02328C24D5CCEB00B7D8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF0F0E872561763000867B45 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		CF221DA02578CB290004E63E /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
 		CF2850F62519CECD00C50DD0 /* TOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTPView.swift; sourceTree = "<group>"; };
 		CF28FD64253355F1004D7B5F /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		CF5304C925400B2D0093A046 /* EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditState.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		CF70CE4224DC74CE00D582A1 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		CF70CE4424DC779300D582A1 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		CF7DB16F250A0137001999E4 /* HomeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAction.swift; sourceTree = "<group>"; };
+		CF938EC5257A20FB005ABB47 /* ScannerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerEnvironment.swift; sourceTree = "<group>"; };
 		CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPExtractor.swift; sourceTree = "<group>"; };
 		CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		CFA4AD6E24D70F0100DDCDDC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				CF02328C24D5CCEB00B7D8A8 /* Info.plist */,
 				CF02328924D5CCEB00B7D8A8 /* Preview Content */,
 				CFE90BA0251B259900E2A49A /* Extensions.swift */,
+				CF221DA02578CB290004E63E /* FeedbackGenerator.swift */,
 			);
 			path = SimplyAuth;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				CFBA04D92525A83600AD559B /* ScannerAction.swift */,
 				CFBA04DC2525A9E000AD559B /* ScannerState.swift */,
 				CFBA04DF2525ADDE00AD559B /* ScannerReducer.swift */,
+				CF938EC5257A20FB005ABB47 /* ScannerEnvironment.swift */,
 			);
 			path = "Business Logic";
 			sourceTree = "<group>";
@@ -379,8 +385,10 @@
 				CF7DB170250A0137001999E4 /* HomeAction.swift in Sources */,
 				CFBC0358251DC79F00BDDA0A /* HOTPView.swift in Sources */,
 				CFC87D602545C0F700788EB9 /* EditView.swift in Sources */,
+				CF221DA12578CB290004E63E /* FeedbackGenerator.swift in Sources */,
 				CFA4AD6F24D70F0100DDCDDC /* Algorithm.swift in Sources */,
 				CFBA04E02525ADDE00AD559B /* ScannerReducer.swift in Sources */,
+				CF938EC6257A20FB005ABB47 /* ScannerEnvironment.swift in Sources */,
 				CFA4AD7124D70F6500DDCDDC /* HOTP.swift in Sources */,
 				CF70CE4324DC74CE00D582A1 /* Keychain.swift in Sources */,
 				CFCC276525230E4500D79AF6 /* QRCodeScannerViewController.swift in Sources */,

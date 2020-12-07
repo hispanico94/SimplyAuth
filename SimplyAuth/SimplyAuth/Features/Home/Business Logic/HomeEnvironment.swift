@@ -13,6 +13,7 @@ struct HomeEnvironment {
   var date: () -> Date
   var uuid: () -> UUID
   var clipboard: (String) -> ()
+  var feedback: FeedbackGenerator
   var mainQueue: AnySchedulerOf<DispatchQueue>
   var idStore: IDStore
   var passwordStore: PasswordStore
@@ -25,6 +26,7 @@ extension HomeEnvironment {
     date: Date.init,
     uuid: UUID.init,
     clipboard: { otp in UIPasteboard.general.string = otp },
+    feedback: .live,
     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
     idStore: .live,
     passwordStore: .live
@@ -38,6 +40,7 @@ extension HomeEnvironment {
     date: { Date(timeIntervalSince1970: 1601200819) },
     uuid: UUID.init,
     clipboard: { otp in UIPasteboard.general.string = otp },
+    feedback: .liveDebug,
     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
     idStore: .mock,
     passwordStore: .mock
@@ -49,6 +52,7 @@ extension HomeEnvironment {
     date: Date.init,
     uuid: UUID.init,
     clipboard: { otp in UIPasteboard.general.string = otp },
+    feedback: .liveDebug,
     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
     idStore: .mock,
     passwordStore: .mock

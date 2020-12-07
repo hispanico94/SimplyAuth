@@ -13,7 +13,7 @@ let homeReducer = scannerReducer
   .pullback(
     state: \HomeState.optionalScanner,
     action: /HomeAction.scanner,
-    environment: { _ in })
+    environment: { ScannerEnvironment(feedback: $0.feedback) })
   .combined(
     with: editReducer
       .optional()
@@ -113,6 +113,7 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { sta
     else { return .none }
     
     return .fireAndForget {
+      environment.feedback.selectionFeedback()
       environment.clipboard(otp)
     }
     

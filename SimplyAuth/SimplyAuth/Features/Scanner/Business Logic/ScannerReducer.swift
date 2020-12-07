@@ -17,7 +17,7 @@ let scannerReducer = editReducer
   )
   .combined(with: _scannerReducer)
 
-private let _scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state, action, _ in
+private let _scannerReducer = Reducer<ScannerState, ScannerAction, ScannerEnvironment> { state, action, environment in
   switch action {
   case .dismissButtonTapped:
     return .none
@@ -37,11 +37,15 @@ private let _scannerReducer = Reducer<ScannerState, ScannerAction, Void> { state
   case .qrCodeFound(let qrCode):
     if let newPassword = qrCode.flatMap(Password.init(string:)) {
       state.password = newPassword
-      return .none
+      return .fireAndForget {
+        environment.feedback.successFeedback()
+      }
     }
     state.qrCodeString = qrCode
     state.errorAlertMessage = "Failed to read QR code"
-    return .none
+    return .fireAndForget {
+      environment.feedback.errorFeedback()
+    }
   
   case .edit(.save):
     guard let newPassword = state.password else { return .none }

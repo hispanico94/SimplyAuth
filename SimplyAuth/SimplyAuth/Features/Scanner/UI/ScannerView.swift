@@ -77,7 +77,7 @@ struct ScannerView_Previews: PreviewProvider {
     ScannerView(store: Store(
       initialState: ScannerState(),
       reducer: scannerReducer,
-      environment: ()
+      environment: .live
     )
     )
   }
