@@ -14,9 +14,14 @@ struct HomeState: Equatable {
   
   var message: String? = nil
   
-  var optionalScanner: ScannerState?
+  var optionalScanner: ScannerState? = nil
   
-  var passwordToEdit: Password?
+  var passwordToEdit: Password? = nil
+}
+
+// MARK: - Computed properties
+
+extension HomeState {
   var optionalEdit: EditState? {
     get {
       passwordToEdit.map { EditState(isNewPassword: false, password: $0) }
