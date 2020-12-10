@@ -65,7 +65,7 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
     return onAppear(state: &state, timerId: ClockTimerID(), environment: environment)
     
   case .password(let id, action: .copyToClipboard):
-    return copyPasswordToClipboard(passwordId: id, messageCancellableId: MessageCancellableID(), state: state, environment: environment)
+    return copyPasswordToClipboard(passwordId: id, messageCancellableId: MessageCancellableID(), state: &state, environment: environment)
     
   case .password(let id, action: .delete):
     guard
@@ -136,15 +136,7 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
       try? environment.passwordStore.savePassword(password)
     }
     
-  case .showMessage(let message):
-    state.message = message
-    
-    return Effect(value: HomeAction.hideMessage)
-      .delay(for: .seconds(3), scheduler: environment.mainQueue)
-      .eraseToEffect()
-      .cancellable(id: MessageCancellableID(), cancelInFlight: true)
-    
-  case .hideMessage:
+  case .hideMessageBar:
     state.message = nil
     return Effect.none
     
@@ -238,7 +230,7 @@ private func onAppear(state: inout HomeState, timerId: AnyHashable, environment:
   )
 }
 
-private func copyPasswordToClipboard(passwordId: UUID, messageCancellableId: AnyHashable, state: HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
+private func copyPasswordToClipboard(passwordId: UUID, messageCancellableId: AnyHashable, state: inout HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
   guard
     let cell = state.cells.first(where: { $0.id == passwordId })
   else { return Effect.none }
@@ -256,12 +248,19 @@ private func copyPasswordToClipboard(passwordId: UUID, messageCancellableId: Any
     otp.allSatisfy(\.isNumber)
   else { return Effect.none }
   
+  state.message = "OTP \(otp) copied!"
+  
   return Effect.merge(
     Effect.fireAndForget {
       environment.feedback.selectionFeedback()
       environment.clipboard(otp)
     },
-    Effect.cancel(id: messageCancellableId),
-    Effect(value: HomeAction.showMessage("OTP \(otp) copied!"))
+    Effect.concatenate(
+      Effect.cancel(id: messageCancellableId),
+      Effect(value: HomeAction.hideMessageBar)
+        .delay(for: .seconds(3), scheduler: environment.mainQueue)
+        .eraseToEffect()
+        .cancellable(id: messageCancellableId, cancelInFlight: true)
+    )
   )
 }

@@ -20,8 +20,7 @@ enum HomeAction {
   case setEditNavigation(isActive: Bool)
   case setScannerSheet(isPresented: Bool)
   case updatePassword(Password)
-  case showMessage(String)
-  case hideMessage
+  case hideMessageBar
 }
 
 enum PasswordAction {
