@@ -30,7 +30,12 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
   
   switch action {
   case .addPassword(let password):
-    return addPassword(password, state: &state, environment: environment)
+    let newIds = state.addPassword(password)
+    
+    return Effect.fireAndForget {
+      environment.idStore.saveIds(newIds)
+      try? environment.passwordStore.savePassword(password)
+    }
     
   case .clockTick(let secondsSince1970):
     state.unixEpochSeconds = secondsSince1970
@@ -45,7 +50,13 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
       .map(HomeAction.passwords)
     
   case .edit(.save):
-    return savePasswordFromEdit(state: &state, environment: environment)
+    guard
+      let editedPassword = state.saveEditedPassword()
+    else { return Effect.none }
+    
+    return Effect.fireAndForget {
+      try? environment.passwordStore.savePassword(editedPassword)
+    }
     
   case .edit:
     return Effect.none
@@ -57,14 +68,26 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
     return copyPasswordToClipboard(passwordId: id, messageCancellableId: MessageCancellableID(), state: state, environment: environment)
     
   case .password(let id, action: .delete):
-    return deletePassword(passwordId: id, state: &state, environment: environment)
+    guard
+      let deletedPassword = state.deletePassword(with: id)
+    else { return Effect.none }
+    
+    return Effect.fireAndForget {
+      try? environment.passwordStore.removePassword(deletedPassword)
+    }
     
   case .password(let id, action: .edit):
     state.passwordToEdit = state.passwords.first(where: { $0.id == id })
     return Effect.none
     
   case .password(let id, .updateCounter):
-    return updatePasswordCounter(passwordId: id, state: &state, environment: environment)
+    guard
+      let password = state.updateCounter(forPasswordWithId: id)
+    else { return Effect.none }
+    
+    return Effect.fireAndForget {
+      try? environment.passwordStore.savePassword(password)
+    }
     
   case .passwords(.success(let passwords)):
     state.passwords = passwords
@@ -83,7 +106,16 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
     return Effect.none
     
   case .scanner(.passwordCreated(let newPassword)):
-    return saveCreatedPassword(newPassword: newPassword, state: &state, environment: environment)
+    let newIds = state.saveCreatedPassword(newPassword)
+    
+    return Effect.merge(
+      Effect.fireAndForget {
+        environment.idStore.saveIds(newIds)
+      },
+      Effect.fireAndForget {
+        try? environment.passwordStore.savePassword(newPassword)
+      }
+    )
     
   case .scanner:
     return Effect.none
@@ -122,31 +154,59 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
   }
 }
 
+// MARK: - HomeState utility extension
+
+private extension HomeState {
+  mutating func addPassword(_ password: Password) -> [UUID] {
+    passwords.append(password)
+    return passwords.map(\.id)
+  }
+  
+  mutating func saveEditedPassword() -> Password? {
+    guard
+      let editedPassword = passwordToEdit,
+      let oldPasswordIndex = passwords.firstIndex(where: { $0.id == editedPassword.id })
+    else { return nil }
+    
+    passwords[oldPasswordIndex] = editedPassword
+    passwordToEdit = nil
+    
+    return editedPassword
+  }
+  
+  mutating func deletePassword(with id: UUID) -> Password? {
+    guard
+      let index = passwords.firstIndex(where: { $0.id == id })
+    else { return nil }
+    
+    return passwords.remove(at: index)
+  }
+  
+  mutating func updateCounter(forPasswordWithId id: UUID) -> Password? {
+    guard
+      let index = passwords.firstIndex(where: { $0.id == id }),
+      case .hotp(var counter) = passwords[index].typology
+    else { return nil }
+    
+    var password = passwords[index]
+    counter += 1
+    password.typology = .hotp(counter)
+    
+    passwords[index] = password
+    
+    return password
+  }
+  
+  mutating func saveCreatedPassword(_ newPassword: Password) -> [UUID] {
+    passwords.append(newPassword)
+    optionalScanner = nil
+    
+    return passwords.map(\.id)
+  }
+}
+
 // MARK: - Helper Functions
 
-private func addPassword(_ password: Password, state: inout HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
-  state.passwords.append(password)
-  let newIds = state.passwords.map(\.id)
-  
-  return Effect.fireAndForget {
-    environment.idStore.saveIds(newIds)
-    try? environment.passwordStore.savePassword(password)
-  }
-}
-
-private func savePasswordFromEdit(state: inout HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
-  guard
-    let editedPassword = state.passwordToEdit,
-    let oldPasswordIndex = state.passwords.firstIndex(where: { $0.id == editedPassword.id })
-  else { return Effect.none }
-  
-  state.passwords[oldPasswordIndex] = editedPassword
-  state.passwordToEdit = nil
-  
-  return Effect.fireAndForget {
-    try? environment.passwordStore.savePassword(editedPassword)
-  }
-}
 
 private func onAppear(state: inout HomeState, timerId: AnyHashable, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
   guard state.firstAppearance else {
@@ -203,49 +263,5 @@ private func copyPasswordToClipboard(passwordId: UUID, messageCancellableId: Any
     },
     Effect.cancel(id: messageCancellableId),
     Effect(value: HomeAction.showMessage("OTP \(otp) copied!"))
-  )
-}
-
-private func deletePassword(passwordId: UUID, state: inout HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
-  guard
-    let index = state.passwords.firstIndex(where: { $0.id == passwordId })
-  else { return .none }
-  
-  let passwordToRemove = state.passwords.remove(at: index)
-  
-  return Effect.fireAndForget {
-    try? environment.passwordStore.removePassword(passwordToRemove)
-  }
-}
-
-private func updatePasswordCounter(passwordId: UUID, state: inout HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
-  guard
-    let index = state.passwords.firstIndex(where: { $0.id == passwordId }),
-    case .hotp(var counter) = state.passwords[index].typology
-  else { return .none }
-  
-  var password = state.passwords[index]
-  counter += 1
-  password.typology = .hotp(counter)
-  
-  state.passwords[index] = password
-  
-  return .fireAndForget {
-    try? environment.passwordStore.savePassword(password)
-  }
-}
-
-private func saveCreatedPassword(newPassword: Password, state: inout HomeState, environment: HomeEnvironment) -> Effect<HomeAction, Never> {
-  state.passwords.append(newPassword)
-  state.optionalScanner = nil
-  
-  let newIds = state.passwords.map(\.id)
-  return Effect.merge(
-    Effect.fireAndForget {
-      environment.idStore.saveIds(newIds)
-    },
-    Effect.fireAndForget {
-      try? environment.passwordStore.savePassword(newPassword)
-    }
   )
 }
