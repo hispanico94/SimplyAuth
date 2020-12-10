@@ -75,7 +75,7 @@ private extension HomeView {
       if viewStore.isMessageShown {
         MessageBar(text: viewStore.message!)
           .padding(.top, 8)
-          .transition(AnyTransition.move(edge: .top))
+          .transition(.move(edge: .top))
           .animation(.easeInOut)
           .zIndex(1)
       }
@@ -122,7 +122,7 @@ private extension View {
         Button(
           action: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-              withAnimation { () -> Void in
+              withAnimation {
                 viewStore.send(.password(id: cellId, action: .delete))
               }
             }
