@@ -12,7 +12,7 @@ struct HOTPView: View {
   var onRefresh: () -> Void
   
   var body: some View {
-    VStack(spacing: 8) {
+    VStack(spacing: 4) {
       HStack {
         VStack(alignment: .leading, spacing: 4) {
           Text(state.issuer)
@@ -32,10 +32,6 @@ struct HOTPView: View {
       Text(state.currentPassword)
         .font(.largeTitle)
     }
-    .padding(16)
-    .background(Color(.secondarySystemBackground))
-    .cornerRadius(16)
-    .shadow(radius: 4, y: -2)
   }
 }
 
@@ -50,5 +46,6 @@ struct HOTPView_Previews: PreviewProvider {
       ),
       onRefresh: { }
     )
+    .previewLayout(.sizeThatFits)
   }
 }

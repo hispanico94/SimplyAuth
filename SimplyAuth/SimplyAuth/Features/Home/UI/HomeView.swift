@@ -15,33 +15,32 @@ struct HomeView: View {
     WithViewStore(store) { viewStore in
       NavigationView {
         ZStack {
-          ScrollView {
-            VStack {
-              ForEach(viewStore.cells) { cell in
-                getCellView(
-                  from: cell,
-                  onRefresh: { viewStore.send(.password(id: cell.id, action: .updateCounter)) }
-                )
-                .configure(cellId: cell.id, viewStore: viewStore)
-              }
-              .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
-              
-              emptyNavigationLink(viewStore: viewStore)
+          emptyNavigationLink(viewStore: viewStore)
+          
+          List {
+            ForEach(viewStore.cells) { cell in
+              getCellView(
+                from: cell,
+                onRefresh: { viewStore.send(.password(id: cell.id, action: .updateCounter)) }
+              )
+              .configure(cellId: cell.id, viewStore: viewStore)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-              leading: Button(
-                action: { viewStore.send(.setScannerSheet(isPresented: true)) },
-                label: {
-                  Image(systemName: "plus.circle")
-                    .imageScale(.large)
-                }
-              ),
-              trailing: EditButton()
-            )
-            .scannerViewSheet(store: store, viewStore: viewStore)
-            .onAppear { viewStore.send(.onAppear) }
+            .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
           }
+          .listStyle(PlainListStyle())
+          .navigationBarTitleDisplayMode(.inline)
+          .navigationBarItems(
+            leading: Button(
+              action: { viewStore.send(.setScannerSheet(isPresented: true)) },
+              label: {
+                Image(systemName: "plus.circle")
+                  .imageScale(.large)
+              }
+            ),
+            trailing: EditButton()
+          )
+          .scannerViewSheet(store: store, viewStore: viewStore)
+          .onAppear { viewStore.send(.onAppear) }
           
           messageBar(viewStore: viewStore)
         }
@@ -99,7 +98,6 @@ private extension HomeView {
 private extension View {
   func configure(cellId: UUID, viewStore: ViewStore<HomeState, HomeAction>) -> some View {
     self
-      .padding(.horizontal)
       .padding(.vertical, 8)
       .contextMenu {
         Button(

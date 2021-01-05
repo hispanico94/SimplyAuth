@@ -11,7 +11,7 @@ struct TOTPView: View {
   var state: TOTPCell
   
   var body: some View {
-    VStack(spacing: 8) {
+    VStack(spacing: 4) {
       HStack {
         VStack(alignment: .leading, spacing: 4) {
           Text(state.issuer)
@@ -32,13 +32,6 @@ struct TOTPView: View {
       Text(state.currentPassword)
         .font(.largeTitle)
     }
-    .padding(16)
-    .background(
-      RoundedRectangle(cornerRadius: 16, style: .continuous)
-        .fill(Color(.secondarySystemBackground))
-        .shadow(radius: 4, y: -2)
-    )
-    .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
   }
 }
 
@@ -53,5 +46,6 @@ struct TOTPView_Previews: PreviewProvider {
       percentTimeLeft: 43.3,
       timeRemainingLow: false
     ))
+    .previewLayout(.sizeThatFits)
   }
 }
