@@ -14,8 +14,8 @@ protocol QRCodeScannerViewControllerDelegate: AnyObject {
 }
 
 final class QRCodeScannerViewController: UIViewController {
-  private var captureSession: AVCaptureSession!
-  private var previewLayer: AVCaptureVideoPreviewLayer!
+  private var captureSession: AVCaptureSession?
+  private var previewLayer: AVCaptureVideoPreviewLayer?
   private var sessionCreationFailed = false
   
   weak var delegate: QRCodeScannerViewControllerDelegate?
@@ -65,13 +65,13 @@ final class QRCodeScannerViewController: UIViewController {
   
   func startCapture() {
     if captureSession?.isRunning == false {
-      captureSession.startRunning()
+      captureSession?.startRunning()
     }
   }
   
   func stopCapture() {
     if captureSession?.isRunning == true {
-      captureSession.stopRunning()
+      captureSession?.stopRunning()
     }
   }
   
@@ -93,8 +93,8 @@ final class QRCodeScannerViewController: UIViewController {
       return
     }
     
-    if (captureSession.canAddInput(videoInput)) {
-      captureSession.addInput(videoInput)
+    if captureSession?.canAddInput(videoInput) == true {
+      captureSession?.addInput(videoInput)
     } else {
       sessionCreationFailed = true
       return
@@ -102,8 +102,8 @@ final class QRCodeScannerViewController: UIViewController {
     
     let metadataOutput = AVCaptureMetadataOutput()
     
-    if (captureSession.canAddOutput(metadataOutput)) {
-      captureSession.addOutput(metadataOutput)
+    if captureSession?.canAddOutput(metadataOutput) == true {
+      captureSession?.addOutput(metadataOutput)
       
       metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
       metadataOutput.metadataObjectTypes = [.qr]
@@ -112,15 +112,17 @@ final class QRCodeScannerViewController: UIViewController {
       return
     }
     
-    previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    previewLayer.frame = view.layer.bounds
-    previewLayer.videoGravity = .resizeAspectFill
-    view.layer.addSublayer(previewLayer)
+    if let session = captureSession {
+      previewLayer = AVCaptureVideoPreviewLayer(session: session)
+      previewLayer!.frame = view.layer.bounds
+      previewLayer!.videoGravity = .resizeAspectFill
+      view.layer.addSublayer(previewLayer!)
+    }
   }
   
   private func deleteCaptureSession() {
     captureSession = nil
-    previewLayer.removeFromSuperlayer()
+    previewLayer?.removeFromSuperlayer()
     previewLayer = nil
   }
   
