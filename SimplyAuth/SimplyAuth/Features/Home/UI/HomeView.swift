@@ -160,7 +160,34 @@ struct HomeView_Previews: PreviewProvider {
     HomeView(
       store: Store(
         initialState: HomeState(
-          passwords: [Password(id: UUID.allZeros, secret: "ksahdkaskdaskj", issuer: "MockPasswordStore", label: "mocked OTP")],
+          passwords: [
+            Password(
+              id: UUID.allZeros,
+              secret: "ksahdkaskdaskj",
+              issuer: "MockPasswordStore",
+              label: "mocked OTP"),
+            Password(
+              id: UUID.allZeros,
+              secret: "ksahdkaskdaskj",
+              issuer: "MockPasswordStore",
+              label: "mocked OTP"),
+            Password(
+              id: UUID.allZeros,
+              secret: "ksahdkaskdaskj",
+              issuer: "MockPasswordStore",
+              label: "mocked OTP"),
+            Password(
+              id: UUID.allZeros,
+              secret: "ksahdkaskdaskj",
+              issuer: "MockPasswordStore",
+              label: "mocked OTP"),
+            Password(
+              id: UUID.allZeros,
+              secret: "ksahdkaskdaskj",
+              issuer: "MockPasswordStore",
+              label: "mocked OTP"),
+            
+          ],
           unixEpochSeconds: 1601200819
         ),
         reducer: homeReducer,
