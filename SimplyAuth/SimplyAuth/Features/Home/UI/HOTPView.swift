@@ -27,6 +27,8 @@ struct HOTPView: View {
           Image(systemName: "arrow.clockwise.circle")
             .font(.largeTitle)
         }
+        .buttonStyle(PlainButtonStyle())
+        .foregroundColor(.accentColor)
       }
       
       Text(state.currentPassword)
