@@ -62,18 +62,17 @@ extension Password {
       components.scheme == "otpauth",
       let typologyString = components.host,
       let queryItems = components.queryItems,
-      let secret = queryItems.first(where: { $0.name == "secret" })?.value,
-      let issuer = queryItems.first(where: { $0.name == "issuer" })?.value
+      let secret = queryItems.first(where: { $0.name == "secret" })?.value
     else { return nil }
     
     let issuerAndLabel = components.path.dropFirst().split(separator: ":")
     
     guard
-      issuerAndLabel.isEmpty == false
+      issuerAndLabel.count == 2
     else { return nil }
     
     // if issuer is also present in the path it must match the issuer parameter
-    if issuerAndLabel.count == 2,
+    if let issuer = queryItems.first(where: { $0.name == "issuer" })?.value,
        let issuerFromPath = issuerAndLabel.first,
        issuerFromPath != issuer {
       return nil
@@ -118,7 +117,7 @@ extension Password {
       algorithm: algorithm,
       typology: typology,
       secret: secret,
-      issuer: issuer,
+      issuer: String(issuerAndLabel.first!),
       label: String(issuerAndLabel.last!)
     )
   }
