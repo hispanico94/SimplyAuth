@@ -121,13 +121,15 @@ struct EditView: View {
         
         Spacer()
         
-        TextField("", text: viewStore.binding(
-          get: { _ in "\(interval)" },
-          send: EditAction.periodChanged
-        )
+        ToolbarTextField(
+          placeholder: "",
+          keyboardType: .numberPad,
+          text: viewStore.binding(
+            get: { _ in "\(interval)" },
+            send: EditAction.periodChanged
+          )
         )
         .frame(width: 100)
-        .multilineTextAlignment(.trailing)
         
         Text("s")
         
@@ -136,17 +138,18 @@ struct EditView: View {
         
         Spacer()
         
-        TextField("", text: viewStore.binding(
-          get: { _ in "\(counter)" },
-          send: EditAction.counterChanged
-        )
+        ToolbarTextField(
+          placeholder: "",
+          keyboardType: .numberPad,
+          text: viewStore.binding(
+            get: { _ in "\(counter)" },
+            send: EditAction.counterChanged
+          )
         )
         .frame(width: 100)
-        .multilineTextAlignment(.trailing)
+        
       }
     }
-    .textFieldStyle(RoundedBorderTextFieldStyle())
-    .keyboardType(.decimalPad)
   }
 }
 
