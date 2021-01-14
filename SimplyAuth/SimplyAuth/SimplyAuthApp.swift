@@ -16,10 +16,10 @@ struct SimplyAuthApp: App {
             store: Store(
               initialState: HomeState(
                 passwords: [],
-                unixEpochSeconds: 1601200819
+                unixEpochSeconds: UInt(Date().timeIntervalSince1970)
               ),
               reducer: homeReducer,
-              environment: .mockDateLive
+              environment: .live
             )
           )
         }
