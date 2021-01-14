@@ -6,12 +6,17 @@ struct Keychain {
   let service: String
   
   private var defaultQuery: [String: Any] {
-    [
+    var query: [String: Any] = [
       String(kSecClass): kSecClassGenericPassword,
       String(kSecAttrService): service,
-      String(kSecAttrAccessGroup): accessGroup as Any,
       String(kSecAttrAccessible): kSecAttrAccessibleWhenUnlocked
     ]
+    
+    if let accessGroup = accessGroup {
+      query[String(kSecAttrAccessGroup)] = accessGroup
+    }
+    
+    return query
   }
   
   
