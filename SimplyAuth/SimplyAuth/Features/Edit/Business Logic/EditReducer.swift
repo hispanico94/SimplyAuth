@@ -30,12 +30,12 @@ let editReducer = Reducer<EditState, EditAction, Void> { state, action, _ in
     return .none
   case .periodChanged(let periodString):
     guard case .totp = state.password.typology else { return .none }
-    guard let newPeriod = UInt(periodString) else { return .none }
+    guard let newPeriod = UInt64(periodString) else { return .none }
     state.password.typology = .totp(newPeriod)
     return .none
   case .counterChanged(let counterString):
     guard case .hotp = state.password.typology else { return .none }
-    guard let newCounter = UInt(counterString) else { return .none }
+    guard let newCounter = UInt64(counterString) else { return .none }
     state.password.typology = .hotp(newCounter)
     return .none
   case .save:

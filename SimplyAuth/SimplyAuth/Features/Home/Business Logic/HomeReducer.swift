@@ -217,14 +217,14 @@ private func onAppear(state: inout HomeState, timerId: AnyHashable, environment:
       .map(HomeAction.ids)
       .eraseToEffect(),
     Effect(value: environment.date().timeIntervalSince1970)
-      .map(UInt.init)
+      .map(UInt64.init)
       .map(HomeAction.clockTick)
       .eraseToEffect(),
     Effect(value: ())
       .delay(for: .seconds(1 - secondOffset), tolerance: .milliseconds(10), scheduler: environment.mainQueue)
       .flatMap { _ in Effect.timer(id: timerId, every: 1, tolerance: .milliseconds(10), on: environment.mainQueue) }
       .map { _ in environment.date().timeIntervalSince1970 }
-      .map(UInt.init)
+      .map(UInt64.init)
       .map(HomeAction.clockTick)
       .eraseToEffect()
   )

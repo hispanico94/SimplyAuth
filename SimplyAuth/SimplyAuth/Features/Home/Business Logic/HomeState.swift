@@ -10,7 +10,7 @@ import Foundation
 struct HomeState: Equatable {
   var firstAppearance: Bool = true
   var passwords: [Password] = []
-  var unixEpochSeconds: UInt = 0
+  var unixEpochSeconds: UInt64 = 0
   
   var message: String? = nil
   

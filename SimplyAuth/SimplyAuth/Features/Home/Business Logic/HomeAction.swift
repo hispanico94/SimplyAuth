@@ -9,7 +9,7 @@ import Foundation
 
 enum HomeAction {
   case addPassword(Password)
-  case clockTick(secondsSince1970: UInt)
+  case clockTick(secondsSince1970: UInt64)
   case edit(EditAction)
   case ids([UUID])
   case onAppear

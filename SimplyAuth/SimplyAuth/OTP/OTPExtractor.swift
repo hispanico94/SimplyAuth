@@ -41,44 +41,39 @@ enum OTPExtractor {
 
 // MARK: - Private helper functions
 
-private func simmetricKey(fromSecret secret: String) -> SymmetricKey? {
-  secret
-    .data(using: .ascii)
-    .map(SymmetricKey.init(data:))
-}
-
-private func getOTPCode(key: SymmetricKey, authenticationNumber: UInt, algorithm: Algorithm, digits: UInt8) -> String? {
+private func getOTPCode(key: SymmetricKey, authenticationNumber: UInt64, algorithm: Algorithm, digits: UInt8) -> String? {
   var mutableAuthenticationNumber = authenticationNumber
-  let authenticationData = Data(bytes: &mutableAuthenticationNumber, count: MemoryLayout<UInt>.size)
+  let authenticationData = Data(bytes: &mutableAuthenticationNumber, count: MemoryLayout<UInt64>.size)
   
-  let truncatedHash: UInt32
+  let resultData: Data
   
   switch algorithm {
   case .sha1:
-    let resultHash = HMAC<Insecure.SHA1>.authenticationCode(for: authenticationData, using: key)
-    truncatedHash = resultHash.withUnsafeBytes(truncateHash(_:))
+    resultData = HMAC<Insecure.SHA1>
+      .authenticationCode(for: authenticationData, using: key)
+      .withUnsafeBytes { Data(bytes: $0.baseAddress!, count: Insecure.SHA1.byteCount) }
     
   case .sha256:
-    let resultHash = HMAC<SHA256>.authenticationCode(for: authenticationData, using: key)
-    truncatedHash = resultHash.withUnsafeBytes(truncateHash(_:))
+    resultData = HMAC<SHA256>
+      .authenticationCode(for: authenticationData, using: key)
+      .withUnsafeBytes { Data(bytes: $0.baseAddress!, count: SHA256.byteCount) }
     
   case .sha512:
-    let resultHash = HMAC<SHA512>.authenticationCode(for: authenticationData, using: key)
-    truncatedHash = resultHash.withUnsafeBytes(truncateHash(_:))
+    resultData = HMAC<SHA512>
+      .authenticationCode(for: authenticationData, using: key)
+      .withUnsafeBytes { Data(bytes: $0.baseAddress!, count: SHA512.byteCount) }
   }
   
+  let truncatedHash = resultData.withUnsafeBytes { truncateHash(pointer: $0, length: resultData.endIndex) }
   let otpCode = truncatedHash % UInt32(pow(10, Float(digits)))
   
   return formatNumber(otpCode, forNumberOfDigits: digits)
 }
 
-private func truncateHash(_ pointer: UnsafeRawBufferPointer) -> UInt32 {
-  let offset = pointer[pointer.endIndex - 1] & 0x0f
+private func truncateHash(pointer: UnsafeRawBufferPointer, length: Int) -> UInt32 {
+  let offset = pointer[length - 1] & 0x0f
   
-  let offsetStartIndex = pointer.startIndex + Int(offset)
-  
-  return pointer.baseAddress!
-    .advanced(by: offsetStartIndex)
+  return (pointer.baseAddress! + Int(offset))
     .bindMemory(to: UInt32.self, capacity: 1)
     .pointee
     .bigEndian

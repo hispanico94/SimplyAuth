@@ -2,8 +2,8 @@ import Foundation
 
 struct Password: Codable {
   enum Typology {
-    case hotp(UInt)
-    case totp(UInt)
+    case hotp(UInt64)
+    case totp(UInt64)
   }
   
   var id: UUID = UUID()
@@ -27,10 +27,10 @@ extension Password.Typology: Codable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     
     do {
-      let counter = try container.decode(UInt.self, forKey: .hotp)
+      let counter = try container.decode(UInt64.self, forKey: .hotp)
       self = .hotp(counter)
     } catch {
-      let interval = try container.decode(UInt.self, forKey: .totp)
+      let interval = try container.decode(UInt64.self, forKey: .totp)
       self = .totp(interval)
     }
   }
@@ -97,14 +97,14 @@ extension Password {
       typology = queryItems
         .first(where: { $0.name == "counter" })
         .flatMap(\.value)
-        .flatMap(UInt.init)
+        .flatMap(UInt64.init)
         .map(Typology.hotp)
         ?? .defaultHotp
     } else if typologyString == "totp" {
       typology = queryItems
         .first(where: { $0.name == "period" })
         .flatMap(\.value)
-        .flatMap(UInt.init)
+        .flatMap(UInt64.init)
         .map(Typology.totp)
         ?? .defaultTotp
     } else {
