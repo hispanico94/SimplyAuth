@@ -23,6 +23,7 @@
 		CF92DA2125AD856C00BE460E /* ToolbarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF92DA2025AD856C00BE460E /* ToolbarTextField.swift */; };
 		CF938EC6257A20FB005ABB47 /* ScannerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF938EC5257A20FB005ABB47 /* ScannerEnvironment.swift */; };
 		CF9A7DE925164B8E00858F8C /* OTPExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A7DE825164B8E00858F8C /* OTPExtractor.swift */; };
+		CF9E787325B4906500DEB31A /* Base32 in Frameworks */ = {isa = PBXBuildFile; productRef = CF9E787225B4906500DEB31A /* Base32 */; };
 		CF9ECF79257E375100D071BB /* MessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9ECF78257E375100D071BB /* MessageBar.swift */; };
 		CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */; };
 		CFA4AD6B24D70E5300DDCDDC /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4AD6A24D70E5300DDCDDC /* TOTP.swift */; };
@@ -96,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF9E787325B4906500DEB31A /* Base32 in Frameworks */,
 				CF9FEE4024D7E48600A3BA0C /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +321,7 @@
 			name = SimplyAuth;
 			packageProductDependencies = (
 				CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */,
+				CF9E787225B4906500DEB31A /* Base32 */,
 			);
 			productName = SimplyAuth;
 			productReference = CF02328024D5CCEA00B7D8A8 /* SimplyAuth.app */;
@@ -349,6 +352,7 @@
 			mainGroup = CF02327724D5CCEA00B7D8A8;
 			packageReferences = (
 				CF9FEE3E24D7E48600A3BA0C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				CF9E787125B4906500DEB31A /* XCRemoteSwiftPackageReference "Bases" */,
 			);
 			productRefGroup = CF02328124D5CCEA00B7D8A8 /* Products */;
 			projectDirPath = "";
@@ -602,6 +606,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CF9E787125B4906500DEB31A /* XCRemoteSwiftPackageReference "Bases" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mattrubin/Bases.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		CF9FEE3E24D7E48600A3BA0C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -613,6 +625,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF9E787225B4906500DEB31A /* Base32 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF9E787125B4906500DEB31A /* XCRemoteSwiftPackageReference "Bases" */;
+			productName = Base32;
+		};
 		CF9FEE3F24D7E48600A3BA0C /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF9FEE3E24D7E48600A3BA0C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
