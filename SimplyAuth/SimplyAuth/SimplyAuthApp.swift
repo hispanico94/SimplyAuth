@@ -16,7 +16,7 @@ struct SimplyAuthApp: App {
             store: Store(
               initialState: HomeState(
                 passwords: [],
-                unixEpochSeconds: UInt(Date().timeIntervalSince1970)
+                unixEpochSeconds: UInt64(Date().timeIntervalSince1970)
               ),
               reducer: homeReducer,
               environment: .live

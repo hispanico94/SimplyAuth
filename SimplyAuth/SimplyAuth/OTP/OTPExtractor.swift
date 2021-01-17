@@ -5,18 +5,19 @@
 //  Created by Paolo Rocca on 19/09/2020.
 //
 
+import Base32
 import CryptoKit
 import Foundation
 
 enum OTPExtractor {
-  static func totpCode(from password: Password, unixEpochSeconds: UInt) -> String? {
+  static func totpCode(from password: Password, unixEpochSeconds: UInt64) -> String? {
     guard
       case .totp(let interval) = password.typology,
-      let symmetricKey = simmetricKey(fromSecret: password.secret)
+      let base32secretData = try? Base32.decode(password.secret)
     else { return nil }
     
     return getOTPCode(
-      key: symmetricKey,
+      key: SymmetricKey(data: base32secretData),
       authenticationNumber: (unixEpochSeconds / interval).bigEndian,
       algorithm: password.algorithm,
       digits: password.digits
@@ -26,11 +27,11 @@ enum OTPExtractor {
   static func hotpCode(from password: Password) -> String? {
     guard
       case .hotp(let counter) = password.typology,
-      let symmetricKey = simmetricKey(fromSecret: password.secret)
+      let base32secretData = try? Base32.decode(password.secret)
     else { return nil }
     
     return getOTPCode(
-      key: symmetricKey,
+      key: SymmetricKey(data: base32secretData),
       authenticationNumber: counter.bigEndian,
       algorithm: password.algorithm,
       digits: password.digits
