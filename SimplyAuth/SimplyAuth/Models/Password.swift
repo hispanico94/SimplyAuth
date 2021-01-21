@@ -67,14 +67,19 @@ extension Password {
     
     let issuerAndLabel = components.path.dropFirst().split(separator: ":")
     
+    guard let label = issuerAndLabel.last.map(String.init) else { return nil }
+    
+    let optionalIssuerFromPath = issuerAndLabel.count == 2 ? String(issuerAndLabel.first!) : nil
+    let optionalIssuerFromParams = queryItems.first(where: { $0.name == "issuer" })?.value
+    
     guard
-      issuerAndLabel.count == 2
+      let issuer = optionalIssuerFromPath ?? optionalIssuerFromParams
     else { return nil }
     
-    // if issuer is also present in the path it must match the issuer parameter
-    if let issuer = queryItems.first(where: { $0.name == "issuer" })?.value,
-       let issuerFromPath = issuerAndLabel.first,
-       issuerFromPath != issuer {
+    // if both issuers are present they must be equal
+    if let issuerFromParams = optionalIssuerFromParams,
+       let issuerFromPath = optionalIssuerFromPath,
+       issuerFromParams != issuerFromPath {
       return nil
     }
     
@@ -117,8 +122,8 @@ extension Password {
       algorithm: algorithm,
       typology: typology,
       secret: secret,
-      issuer: String(issuerAndLabel.first!),
-      label: String(issuerAndLabel.last!)
+      issuer: issuer,
+      label: label
     )
   }
 }
