@@ -26,6 +26,7 @@ struct HomeView: View {
               .configure(cellId: cell.id, viewStore: viewStore)
             }
             .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
+            .onDelete { viewStore.send(.delete($0)) }
           }
           .listStyle(PlainListStyle())
           .navigationBarTitleDisplayMode(.inline)
