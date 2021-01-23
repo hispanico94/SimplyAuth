@@ -26,7 +26,6 @@ struct HomeView: View {
               .configure(cellId: cell.id, viewStore: viewStore)
             }
             .onMove { viewStore.send(.reorder(source: $0, destination: $1)) }
-            .onDelete { viewStore.send(.delete($0)) }
           }
           .listStyle(PlainListStyle())
           .navigationBarTitleDisplayMode(.inline)
@@ -118,16 +117,22 @@ private extension View {
         
         Divider()
         
-        Button(
-          action: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-              withAnimation {
-                viewStore.send(.password(id: cellId, action: .delete))
-              }
-            }
+        Menu(
+          content: {
+            Button(
+              action: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                  withAnimation {
+                    viewStore.send(.password(id: cellId, action: .delete))
+                  }
+                }
+              },
+              label: { Label("Confirm Deletion", systemImage: "trash") })
+              .foregroundColor(.red)
           },
-          label: { Label("Delete", systemImage: "trash") })
-          .foregroundColor(.red)
+          label: { Label("Delete", systemImage: "trash") }
+        )
+        .accentColor(.red)
       }
       .onTapGesture {
         viewStore.send(.password(id: cellId, action: .copyToClipboard))

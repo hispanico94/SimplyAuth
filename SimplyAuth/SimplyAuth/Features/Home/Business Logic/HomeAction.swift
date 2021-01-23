@@ -10,7 +10,6 @@ import Foundation
 enum HomeAction {
   case addPassword(Password)
   case clockTick(secondsSince1970: UInt64)
-  case delete(IndexSet)
   case edit(EditAction)
   case hideMessageBar
   case ids([UUID])

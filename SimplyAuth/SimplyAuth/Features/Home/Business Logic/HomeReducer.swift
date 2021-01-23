@@ -41,16 +41,6 @@ private let _homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { (st
     state.unixEpochSeconds = secondsSince1970
     return Effect.none
     
-  case .delete(let offsets):
-    let passwordsToDelete = offsets.map { state.passwords[$0] }
-    state.passwords.remove(atOffsets: offsets)
-    
-    return Effect.fireAndForget {
-      passwordsToDelete.forEach {
-        try? environment.passwordStore.removePassword($0)
-      }
-    }
-    
   case .hideMessageBar:
     state.message = nil
     return Effect.none
