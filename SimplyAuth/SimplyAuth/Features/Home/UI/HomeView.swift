@@ -101,19 +101,13 @@ private extension View {
       .padding(.vertical, 8)
       .contextMenu {
         Button(
-          action: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-              viewStore.send(.password(id: cellId, action: .copyToClipboard))
-            }
-          },
-          label: { Label("Copy", systemImage: "doc.on.doc") })
+          action: { viewStore.send(.password(id: cellId, action: .copyToClipboard)) },
+          label: { Label("Copy", systemImage: "doc.on.doc") }
+        )
         Button(
-          action: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-              viewStore.send(.password(id: cellId, action: .edit))
-            }
-          },
-          label: { Label("Edit", systemImage: "square.and.pencil") })
+          action: { viewStore.send(.password(id: cellId, action: .edit)) },
+          label: { Label("Edit", systemImage: "square.and.pencil") }
+        )
         
         Divider()
         
@@ -121,7 +115,7 @@ private extension View {
           content: {
             Button(
               action: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                   withAnimation {
                     viewStore.send(.password(id: cellId, action: .delete))
                   }
